@@ -1,0 +1,37 @@
+# global label defs are generated
+globals.asm
+
+# precompiled python
+*.pyc
+
+# compiled object file
+*.o
+
+# no binaries
+*.exe
+
+# roms
+*.gbc
+*.gb
+
+# rgbds extras
+*.map
+*.sym
+
+# generated
+*.tx
+
+# swap files for vim
+.*.swp
+
+# no data from extras/
+*.json
+
+# for any of the poor souls with save game files in their working directory
+*.sgm
+*.sav
+*.sys
+
+# for vim configuration
+# url: http://www.vim.org/scripts/script.php?script_id=441
+.lvimrc
