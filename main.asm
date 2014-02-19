@@ -12,6 +12,7 @@ SECTION "bank00", ROM0
 UnknownData_0x0000:
 INCBIN "baserom.gb", $0000, $0028 - $0000
 
+;rst28
 	add a
 	pop hl
 	ld e, a
@@ -27,13 +28,13 @@ INCBIN "baserom.gb", $0000, $0028 - $0000
 UnknownData_0x0034:
 INCBIN "baserom.gb", $0034, $0040 - $0034
 
-	jp UnknownJump_0x0154
+	jp VBlank
 
 UnknownData_0x0043:
 INCBIN "baserom.gb", $0043, $0100 - $0043
 
 	nop
-	jp UnknownJump_0x0150
+	jp Start
 
 SECTION "Header", ROM0[$134]
 	db $4D, $41, $52, $49, $4F, $4C, $41, $4E, $44, $32, $00, $00, $00, $00, $00 ;MARIOLAND2
@@ -50,14 +51,14 @@ SECTION "Header", ROM0[$134]
 SECTION "Home", ROM0[$150]
 
 
-UnknownJump_0x0150:
-	jp UnknownJump_0x01E5
+Start: ;$0150
+	jp Init
 
 UnknownData_0x0153:
 INCBIN "baserom.gb", $0153, $0154 - $0153
 
 
-UnknownJump_0x0154:
+VBlank: ;$0154
 	di
 	push af
 	push bc
@@ -131,7 +132,7 @@ UnknownRJump_0x01C5:
 	pop af
 	reti
 
-UnknownJump_0x01E5:
+Init: ;$01E5
 	ld a, 1
 	di
 	ld [$FF00+$0F], a
@@ -145,10 +146,10 @@ UnknownJump_0x01E5:
 	ld a, 128
 	ld [$FF00+$40], a
 
-UnknownRJump_0x01FB:
+.wait
 	ld a, [$FF00+$44]
 	cp $94
-	jr nz, UnknownRJump_0x01FB
+	jr nz, .wait
 	ld a, 3
 	ld [$FF00+$40], a
 	ld sp, $A8FF
@@ -195,7 +196,7 @@ UnknownRJump_0x0244:
 	inc c
 	dec b
 	jr nz, UnknownRJump_0x0244
-	call UnknownCall_0x0327
+	call BlankBGMap1
 	ld a, 1
 	ld [$FF00+$FF], a
 	ld a, 7
@@ -285,35 +286,34 @@ UnknownRJump_0x0322:
 	jr nz, UnknownRJump_0x0322
 	ret
 
-UnknownCall_0x0327:
+BlankBGMap1: ;$0327
 	ld hl, $9FFF
 	ld bc, $0800
 
-UnknownRJump_0x032D:
+.continue
 	ld a, 255
 	ld [hld], a
 	dec bc
 	ld a, b
 	or c
-	jr nz, UnknownRJump_0x032D
+	jr nz, .continue
 	ret
 
-UnknownRJump_0x0336:
-UnknownCall_0x0336:
+CopyMem: ;$0336 copies bc bytes from hl to de.
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec bc
 	ld a, b
 	or c
-	jr nz, UnknownRJump_0x0336
+	jr nz, CopyMem
 	ret
 
 UnknownData_0x033F:
 INCBIN "baserom.gb", $033F, $0348 - $033F
 
 
-UnknownCall_0x0348:
+DisableVBlank: ;$0348
 	ld a, [$FF00+$FF]
 	ld [$FF00+$99], a
 	res 0, a
@@ -558,7 +558,7 @@ UnknownRJump_0x04DD:
 	inc a
 	ld [$FF00+$9B], a
 	ret
-	call UnknownCall_0x0348
+	call DisableVBlank
 	call UnknownCall_0x0669
 	ld a, [$A258]
 	ld [$A24E], a
@@ -745,7 +745,7 @@ UnknownCall_0x0669:
 	ld bc, $0800
 	ld hl, $4000
 	ld de, $8000
-	call UnknownCall_0x0336
+	call CopyMem
 	jr UnknownRJump_0x06C0
 
 UnknownRJump_0x0692:
@@ -757,7 +757,7 @@ UnknownRJump_0x0692:
 	ld bc, $0800
 	ld hl, $4800
 	ld de, $8000
-	call UnknownCall_0x0336
+	call CopyMem
 	jr UnknownRJump_0x06C0
 
 UnknownRJump_0x06AC:
@@ -767,7 +767,7 @@ UnknownRJump_0x06AC:
 	ld bc, $0800
 	ld hl, $5000
 	ld de, $8000
-	call UnknownCall_0x0336
+	call CopyMem
 
 UnknownRJump_0x06C0:
 	ld a, 7
@@ -788,7 +788,7 @@ UnknownRJump_0x06C0:
 	ld l, e
 	ld bc, $0380
 	ld de, $8E80
-	call UnknownCall_0x0336
+	call CopyMem
 	ld a, 27
 	ld [$A24E], a
 	ld [$2100], a
@@ -804,7 +804,7 @@ UnknownRJump_0x06C0:
 	add de
 	ld bc, $0300
 	ld de, $8800
-	call UnknownCall_0x0336
+	call CopyMem
 	ld a, [$A269]
 	ld hl, $362A
 	sla a
@@ -824,7 +824,7 @@ UnknownRJump_0x06C0:
 	ld a, e
 	ld l, a
 	ld de, $8B00
-	call UnknownCall_0x0336
+	call CopyMem
 	ld a, [$A269]
 	ld hl, $36AA
 	sla a
@@ -844,7 +844,7 @@ UnknownRJump_0x06C0:
 	ld a, e
 	ld l, a
 	ld de, $9200
-	call UnknownCall_0x0336
+	call CopyMem
 	ld hl, $35EA
 	ld a, [$A269]
 	ld e, a
@@ -1837,7 +1837,7 @@ UnknownRJump_0x0EB0:
 	jr z, UnknownRJump_0x0EE4
 	ld a, 240
 	ld [$A28B], a
-	call UnknownCall_0x0348
+	call DisableVBlank
 	call UnknownCall_0x3C94
 	ld a, 195
 	ld [$FF00+$40], a
@@ -4341,7 +4341,7 @@ UnknownCall_0x25AF:
 	and $0F
 	ld [$A22D], a
 	push hl
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 19
 	ld [$A258], a
 	ld [$2100], a
@@ -4354,7 +4354,7 @@ UnknownCall_0x25AF:
 	ld bc, $0050
 	ld hl, $7800
 	ld de, $8E80
-	call UnknownCall_0x0336
+	call CopyMem
 	ld hl, $268B
 	ld a, [$A22D]
 	sla a
@@ -4385,7 +4385,7 @@ UnknownCall_0x25AF:
 	ld de, $9000
 
 UnknownRJump_0x2614:
-	call UnknownCall_0x0336
+	call CopyMem
 	ld hl, $268B
 	ld a, [$A22D]
 	sla a
@@ -4417,7 +4417,7 @@ UnknownRJump_0x2614:
 	ld de, $8900
 
 UnknownRJump_0x264F:
-	call UnknownCall_0x0336
+	call CopyMem
 	ld a, 8
 	ld [$A24E], a
 	ld [$2100], a
@@ -4597,7 +4597,7 @@ UnknownRJump_0x278E:
 	ld a, 2
 	ld [$A45E], a
 	ret
-	call UnknownCall_0x0348
+	call DisableVBlank
 	xor a
 	ld [$FF00+$8D], a
 	call UnknownCall_0x2D41
@@ -4607,7 +4607,7 @@ UnknownRJump_0x278E:
 	ld bc, $1800
 	ld hl, $4C92
 	ld de, $8000
-	call UnknownCall_0x0336
+	call CopyMem
 	ld de, $9800
 	ld hl, $6492
 
@@ -4861,14 +4861,14 @@ UnknownRJump_0x294D:
 UnknownData_0x2974:
 INCBIN "baserom.gb", $2974, $29DD - $2974
 
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 17
 	ld [$A24E], a
 	ld [$2100], a
 	ld bc, $1800
 	ld hl, $5800
 	ld de, $8000
-	call UnknownCall_0x0336
+	call CopyMem
 	ld a, 26
 	ld [$A24E], a
 	ld [$2100], a
@@ -4958,7 +4958,7 @@ UnknownCall_0x2ABE:
 	ld bc, $1800
 	ld hl, $41E5
 	ld de, $8000
-	call UnknownCall_0x0336
+	call CopyMem
 	ret
 	ld a, 12
 	ld [$A24E], a
@@ -5048,31 +5048,31 @@ UnknownCall_0x2B8B:
 	ld bc, $0600
 	ld hl, $5E00
 	ld de, $9200
-	call UnknownCall_0x0336
+	call CopyMem
 	ld bc, $0380
 	ld hl, $6A00
 	ld de, $8E80
-	call UnknownCall_0x0336
+	call CopyMem
 	ld a, 6
 	ld [$A24E], a
 	ld [$2100], a
 	ld bc, $0800
 	ld hl, $4000
 	ld de, $8000
-	call UnknownCall_0x0336
+	call CopyMem
 	ld a, 27
 	ld [$A24E], a
 	ld [$2100], a
 	ld hl, $7000
 	ld bc, $0300
 	ld de, $8800
-	call UnknownCall_0x0336
+	call CopyMem
 	ld a, 12
 	ld [$2100], a
 	ld bc, $0380
 	ld hl, $6ACA
 	ld de, $8B00
-	call UnknownCall_0x0336
+	call CopyMem
 	ret
 	ld a, 12
 	ld [$A24E], a
@@ -5086,7 +5086,7 @@ UnknownCall_0x2B8B:
 UnknownCall_0x2BFB:
 	ld [$A24E], a
 	ld [$2100], a
-	call UnknownCall_0x0336
+	call CopyMem
 	ld a, 15
 	ld [$A24E], a
 	ld [$2100], a
@@ -5157,7 +5157,7 @@ UnknownJump_0x2CA3:
 	ld [$A24E], a
 	ld [$2100], a
 	jp UnknownJump_0x6800F
-	call UnknownCall_0x0348
+	call DisableVBlank
 	call UnknownCall_0x031C
 	xor a
 	ld [$FF00+$8D], a
@@ -6384,14 +6384,14 @@ UnknownRJump_0x357F:
 UnknownRJump_0x358B:
 	ld a, 208
 	ld [$A27F], a
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 26
 	ld [$A24E], a
 	ld [$2100], a
 	ld hl, $4656
 	ld bc, $0300
 	ld de, $8800
-	call UnknownCall_0x0336
+	call CopyMem
 	call UnknownCall_0x2D41
 	ld a, 224
 	ld [$A27E], a
@@ -6535,7 +6535,7 @@ UnknownJump_0x38CE:
 	inc a
 	and $03
 	ld [$A0F0], a
-	jp UnknownJump_0x01E5
+	jp Init
 
 UnknownRJump_0x38E5:
 	ld a, 5
@@ -7255,7 +7255,7 @@ UnknownCall_0x3F58:
 	ld bc, $0800
 	ld hl, $4000
 	ld de, $8000
-	call UnknownCall_0x0336
+	call CopyMem
 	ld a, 15
 	ld [$A24E], a
 	ld [$2100], a
@@ -17867,7 +17867,7 @@ SECTION "bank0C", ROMX, BANK[$0C]
 
 
 UnknownJump_0x30000:
-	call UnknownCall_0x0348
+	call DisableVBlank
 	call UnknownCall_0x2B8B
 	ld de, $9800
 	ld hl, $4A52
@@ -18650,11 +18650,11 @@ UnknownRJump_0x305A4:
 	jp UnknownJump_0x3045B
 
 UnknownJump_0x305B6:
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld bc, $1800
 	ld hl, $4C92
 	ld de, $8000
-	call UnknownCall_0x0336
+	call CopyMem
 	ld de, $9800
 	ld hl, $6492
 
@@ -21132,7 +21132,7 @@ UnknownJump_0x3D0D7:
 	ret
 
 UnknownCall_0x3D0FF:
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 13
 	ld bc, $0200
 	ld hl, $4000
@@ -21253,7 +21253,7 @@ UnknownJump_0x3D1E0:
 	ret
 
 UnknownCall_0x3D208:
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 13
 	ld bc, $0200
 	ld hl, $4000
@@ -21422,7 +21422,7 @@ UnknownJump_0x3D33A:
 	ret
 
 UnknownCall_0x3D371:
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 13
 	ld bc, $0200
 	ld hl, $4000
@@ -21552,7 +21552,7 @@ INCBIN "baserom.gb", $3D477, $3D49F - $3D477
 
 
 UnknownCall_0x3D49F:
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 13
 	ld bc, $0200
 	ld hl, $4000
@@ -21726,7 +21726,7 @@ UnknownRJump_0x3D606:
 	ret
 
 UnknownCall_0x3D61F:
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 13
 	ld bc, $0200
 	ld hl, $4000
@@ -21816,7 +21816,7 @@ UnknownJump_0x3D6C3:
 	ret
 
 UnknownCall_0x3D6EB:
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 13
 	ld bc, $0200
 	ld hl, $4000
@@ -21889,7 +21889,7 @@ UnknownJump_0x3D760:
 	ret
 
 UnknownCall_0x3D79A:
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 13
 	ld bc, $0200
 	ld hl, $4000
@@ -21986,7 +21986,7 @@ UnknownJump_0x3D848:
 	ret
 
 UnknownCall_0x3D880:
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 13
 	ld bc, $0200
 	ld hl, $4000
@@ -25189,7 +25189,7 @@ UnknownCall_0x3F156:
 	di
 	xor a
 	ld [$A27E], a
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 255
 	ld [$A468], a
 	call UnknownCall_0x2AAA
@@ -25407,7 +25407,7 @@ UnknownCall_0x3F307:
 	ld a, 255
 	ld [$A468], a
 	call UnknownCall_0x2AAA
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 25
 	ld bc, $1000
 	ld hl, $4000
@@ -25603,7 +25603,7 @@ UnknownCall_0x3F4B1:
 	ld a, 255
 	ld [$A468], a
 	call UnknownCall_0x2AAA
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 25
 	ld bc, $1000
 	ld hl, $5000
@@ -25719,7 +25719,7 @@ UnknownCall_0x3F5A4:
 	ld a, 255
 	ld [$A468], a
 	call UnknownCall_0x2AAA
-	call UnknownCall_0x0348
+	call DisableVBlank
 	ld a, 25
 	ld bc, $1000
 	ld hl, $5000
