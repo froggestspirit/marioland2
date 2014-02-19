@@ -17789,7 +17789,37 @@ SECTION "bank06", ROMX, BANK[$06]
 
 
 UnknownData_0x18000:
-INCBIN "baserom.gb", $18000, $1C000 - $18000
+INCBIN "gfx/mario.2bpp"
+INCBIN "gfx/mariodark.2bpp"
+INCBIN "gfx/mariomoon.2bpp"
+INCBIN "gfx/common/goomba.2bpp"
+INCBIN "gfx/common/koopa.2bpp"
+INCBIN "gfx/common/pirannahplant.2bpp"
+INCBIN "gfx/treezone/blank1.2bpp"
+INCBIN "gfx/treezone/frog.2bpp"
+INCBIN "gfx/treezone/mole.2bpp"
+INCBIN "gfx/treezone/hedgehog.2bpp"
+INCBIN "gfx/treezone/dragonfly.2bpp"
+INCBIN "gfx/treezone/buzzybomb.2bpp"
+INCBIN "gfx/treezone/jellybull.2bpp"
+INCBIN "gfx/treezone/unknown1.2bpp"
+INCBIN "gfx/treezone/bee.2bpp"
+INCBIN "gfx/treezone/beeskeleton.2bpp"
+INCBIN "gfx/treezone/bigbee.2bpp"
+INCBIN "gfx/treezone/worm.2bpp"
+INCBIN "gfx/treezone/wormspike.2bpp"
+INCBIN "gfx/treezone/egg.2bpp"
+INCBIN "gfx/treezone/blank2.2bpp"
+INCBIN "gfx/common/goomba.2bpp"
+INCBIN "gfx/treezone/owl.2bpp"
+INCBIN "gfx/treezone/cloud.2bpp"
+INCBIN "gfx/common/bird.2bpp"
+INCBIN "gfx/treezone/blank3.2bpp"
+INCBIN "gfx/treezone/boss.2bpp"
+INCBIN "gfx/treezone/blank4.2bpp"
+INCBIN "gfx/common/goldencoin.2bpp"
+INCBIN "gfx/treezone/blank5.2bpp"
+INCBIN "baserom.gb", $1AD80, $1C000 - $1AD80
 
 
 
