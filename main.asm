@@ -14,7 +14,7 @@ SECTION "bank00", ROM0
 UnknownData_0x0000:
 INCBIN "baserom.gb", $0000, $0028 - $0000
 
-;rst28
+;rst28 jumps to address of address table, where a is the index
 	add a
 	pop hl
 	ld e, a
@@ -72,9 +72,9 @@ VBlank: ;$0154
 	ld [$FF00+$43], a
 	ld a, [sBGPalette]
 	ld [$FF00+$47], a
-	ld a, [sOAMPalette]
+	ld a, [sOAMPalette1]
 	ld [$FF00+$48], a
-	ld a, [$A280]
+	ld a, [sOAMPalette2]
 	ld [$FF00+$49], a
 	ld a, [$A266]
 	sub 1
@@ -108,7 +108,7 @@ UnknownRJump_0x018B:
 	jr z, UnknownRJump_0x01BF
 	ld a, [$A258]
 	ld [$2100], a
-	call UnknownCall_0x0AFB
+	call ScrollLevelMap
 	jr UnknownRJump_0x01C5
 
 UnknownRJump_0x01BF:
@@ -120,10 +120,10 @@ UnknownRJump_0x01C5:
 	call $FFA0
 	ld a, [$FF00+$9B]
 	cp $04
-	call z, UnknownCall_0x2089
+	call z, UpdateSound
 	ld a, [$FF00+$9B]
 	cp $18
-	call z, UnknownCall_0x2089
+	call z, UpdateSound
 	ld a, [$A24E]
 	ld [$2100], a
 	ld a, 1
@@ -185,9 +185,9 @@ UnknownRJump_0x022A:
 	ld a, 147
 	ld [sBGPalette], a
 	ld a, 208
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld a, 56
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld c, 160
 	ld b, 10
 	ld hl, $2058
@@ -232,7 +232,7 @@ UnknownRJump_0x0279:
 	jr z, UnknownRJump_0x028D
 	cp $13
 	jr z, UnknownRJump_0x028D
-	call UnknownCall_0x2089
+	call UpdateSound
 
 UnknownRJump_0x028D:
 	call UnknownCall_0x20A4
@@ -402,9 +402,9 @@ UnknownRJump_0x03A9:
 	ld a, [hli]
 	ld [sBGPalette], a
 	ld a, [hli]
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld a, [hli]
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld a, [$A267]
 	ld b, a
 	ld a, [$A266]
@@ -570,10 +570,10 @@ UnknownRJump_0x04DD:
 	ld [sBGPalette], a
 	ld [$FF00+$47], a
 	ld a, [$A810]
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld [$FF00+$48], a
 	ld a, [$A811]
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld [$FF00+$49], a
 	ld a, [$A804]
 	ld [$FF00+$C8], a
@@ -590,7 +590,7 @@ UnknownRJump_0x052F:
 	ld a, 170
 	ld [$FF00+$B0], a
 	call UnknownCall_0x08AD
-	call UnknownCall_0x0AFB
+	call ScrollLevelMap
 	ld a, [$FF00+$C8]
 	add 16
 	ld [$FF00+$C8], a
@@ -626,7 +626,7 @@ UnknownRJump_0x052F:
 	ld [$FF00+$40], a
 	xor a
 	ld [$A211], a
-	ld a, [$A2CE]
+	ld a, [sSoundDisabled]
 	and a
 	jr nz, UnknownRJump_0x0598
 	ld a, [$A80E]
@@ -1287,10 +1287,10 @@ UnknownRJump_0x0A8A:
 	ld [hl], a
 	ret
 
-UnknownCall_0x0AFB:
+ScrollLevelMap: ;$0AFB
 	ld de, $A9FF
 
-UnknownRJump_0x0AFE:
+.continue
 	inc de
 	ld a, [de]
 	ld l, a
@@ -1298,7 +1298,7 @@ UnknownRJump_0x0AFE:
 	ld a, [de]
 	ld h, a
 	and a
-	jr z, UnknownRJump_0x0B25
+	jr z, .done
 	inc de
 	ld a, [de]
 	ld [hli], a
@@ -1322,9 +1322,9 @@ UnknownRJump_0x0AFE:
 	inc de
 	ld a, [de]
 	ld [hl], a
-	jr UnknownRJump_0x0AFE
+	jr .continue
 
-UnknownRJump_0x0B25:
+.done
 	xor a
 	ld [$AA01], a
 	ret
@@ -1868,9 +1868,9 @@ UnknownRJump_0x0EF3:
 	ld a, [$A80F]
 	ld [sBGPalette], a
 	ld a, [$A810]
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld a, [$A811]
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ret
 
 UnknownCall_0x0F0B:
@@ -3812,13 +3812,13 @@ UnknownCall_0x207D:
 	call UnknownCall_0x10000
 	ret
 
-UnknownCall_0x2089:
-	ld a, [$A2CE]
+UpdateSound: ;$2089
+	ld a, [sSoundDisabled]
 	and a
 	ret nz
 	ld a, 4
 	ld [$2100], a
-	call UnknownCall_0x10030
+	call _UpdateSound
 	ret
 
 UnknownData_0x2097:
@@ -4446,9 +4446,9 @@ UnknownRJump_0x266D:
 	ld [$FF00+$47], a
 	ld [sBGPalette], a
 	ld [$FF00+$48], a
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld [$FF00+$49], a
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld a, 227
 	ld [$FF00+$40], a
 	pop hl
@@ -4465,7 +4465,7 @@ UnknownJump_0x26C3:
 	ld a, [$A258]
 	ld [$A24E], a
 	ld [$2100], a
-	call UnknownCall_0x0AFB
+	call ScrollLevelMap
 	jr UnknownRJump_0x2712
 
 UnknownJump_0x26D7:
@@ -4513,7 +4513,7 @@ UnknownRJump_0x26EF:
 UnknownRJump_0x2712:
 	ld a, [$FF00+$9B]
 	cp $13
-	call nz, UnknownCall_0x2089
+	call nz, UpdateSound
 	ld a, 1
 	ld [$FF00+$82], a
 	ld a, [$A24E]
@@ -4565,7 +4565,7 @@ UnknownCall_0x273E:
 UnknownRJump_0x2760:
 	ld a, b
 	ld [sBGPalette], a
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld a, [hKeysPressed]
 	cp $04
 	jr nz, UnknownRJump_0x278E
@@ -4579,7 +4579,7 @@ UnknownRJump_0x2760:
 	ld [$A2C8], a
 	ld [$A299], a
 	ld [$A2B4], a
-	ld [$A50D], a
+	ld [sFastMusic], a
 	ld a, 20
 	ld [$FF00+$9B], a
 	ret
@@ -4591,9 +4591,9 @@ UnknownRJump_0x278E:
 	ld a, [$A80F]
 	ld [sBGPalette], a
 	ld a, [$A810]
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld a, [$A811]
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld a, 4
 	ld [$FF00+$9B], a
 	ld a, 2
@@ -4890,9 +4890,9 @@ UnknownRJump_0x2A02:
 	ld a, 225
 	ld [sBGPalette], a
 	ld a, 210
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld a, 57
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld hl, $A100
 
 UnknownRJump_0x2A23:
@@ -4937,7 +4937,7 @@ UnknownCall_0x2A96:
 	ld a, 4
 	ld [$A24E], a
 	ld [$2100], a
-	call UnknownCall_0x10030
+	call _UpdateSound
 	ld a, 26
 	ld [$A24E], a
 	ld [$2100], a
@@ -4947,7 +4947,7 @@ UnknownCall_0x2AAA:
 	ld a, 4
 	ld [$A24E], a
 	ld [$2100], a
-	call UnknownCall_0x10030
+	call _UpdateSound
 	ld a, 15
 	ld [$A24E], a
 	ld [$2100], a
@@ -5804,7 +5804,7 @@ UnknownRJump_0x3127:
 	ld a, 20
 	ld [$FF00+$9B], a
 	call UnknownCall_0x2D41
-	ld a, [$A2CE]
+	ld a, [sSoundDisabled]
 	and a
 	jp nz, UnknownJump_0x3150
 	ld a, [$A22C]
@@ -6385,7 +6385,7 @@ UnknownRJump_0x357F:
 
 UnknownRJump_0x358B:
 	ld a, 208
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	call DisableVBlank
 	ld a, 26
 	ld [$A24E], a
@@ -6398,9 +6398,9 @@ UnknownRJump_0x358B:
 	ld a, 224
 	ld [sBGPalette], a
 	ld a, 210
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld a, 57
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld a, 226
 	ld [$FF00+$40], a
 	ld a, 0
@@ -6515,10 +6515,10 @@ UnknownRJump_0x38B2:
 	ret
 
 UnknownCall_0x38B9:
-	ld a, [$A2CE]
+	ld a, [sSoundDisabled]
 	and $F0
 	jr nz, UnknownRJump_0x3911
-	ld a, [$A2CE]
+	ld a, [sSoundDisabled]
 	and $0F
 	jr nz, UnknownRJump_0x38C8
 	ret
@@ -8418,7 +8418,7 @@ UnknownRJump_0x5D39:
 	ld [$A271], a
 	and a
 	jr nz, UnknownRJump_0x5D6A
-	ld a, [$A469]
+	ld a, [sCurSong]
 	cp $09
 	jr z, UnknownRJump_0x5D6A
 	ld a, [$A292]
@@ -8478,7 +8478,7 @@ UnknownRJump_0x5DCB:
 	ld a, [sTimerHigh]
 	and a
 	jr nz, UnknownRJump_0x5E03
-	ld a, [$A469]
+	ld a, [sCurSong]
 	and a
 	jr nz, UnknownRJump_0x5E12
 	ld a, [$A292]
@@ -14735,7 +14735,7 @@ INCBIN "baserom.gb", $1001D, $1002D - $1001D
 UnknownCall_0x1002D:
 	jp UnknownJump_0x13F5E
 
-UnknownCall_0x10030:
+_UpdateSound: ;$10030
 	ld a, [$A45E]
 	cp $01
 	jp z, UnknownJump_0x118F7
@@ -16413,7 +16413,7 @@ UnknownCall_0x112E0:
 	ld hl, $5244
 	and $3F
 	call UnknownCall_0x11298
-	call UnknownCall_0x1145A
+	call StartMusic
 	jp UnknownJump_0x113F3
 
 UnknownData_0x112F7:
@@ -16421,7 +16421,7 @@ INCBIN "baserom.gb", $112F7, $113F3 - $112F7
 
 
 UnknownJump_0x113F3:
-	ld a, [$A469]
+	ld a, [sCurSong]
 	ld hl, $52F7
 
 UnknownRJump_0x113F9:
@@ -16494,47 +16494,47 @@ UnknownCall_0x11454:
 	ld [de], a
 	ret
 
-UnknownCall_0x1145A:
+StartMusic: ;$1145A
 	call UnknownCall_0x13F6B
 	ld a, [$A468]
 	cp $02
-	jr z, UnknownRJump_0x1147F
+	jr z, .SetNormalMusicSpeed
 	cp $03
-	jr z, UnknownRJump_0x1147F
+	jr z, .SetNormalMusicSpeed
 	cp $0C
-	jr z, UnknownRJump_0x1147F
+	jr z, .SetNormalMusicSpeed
 	cp $0F
-	jr z, UnknownRJump_0x1147F
+	jr z, .SetNormalMusicSpeed
 	cp $18
-	jr z, UnknownRJump_0x1147F
+	jr z, .SetNormalMusicSpeed
 	cp $09
-	jr nz, UnknownRJump_0x11483
+	jr nz, .StartMusic
 	ld a, 1
-	ld [$A50D], a
-	jr UnknownRJump_0x11483
+	ld [sFastMusic], a
+	jr .StartMusic
 
-UnknownRJump_0x1147F:
+.SetNormalMusicSpeed ;$1147F
 	xor a
-	ld [$A50D], a
+	ld [sFastMusic], a
 
-UnknownRJump_0x11483:
+.StartMusic ;$11483
 	ld de, $A400
 	ld b, 0
 	ld a, [hli]
 	ld [de], a
-	ld a, [$A50D]
+	ld a, [sFastMusic]
 	and a
-	jr z, UnknownRJump_0x11497
+	jr z, .SkipFastMusic
 	ld b, 4
 	ld a, [de]
 	add b
 	ld [de], a
 	ld b, 0
 
-UnknownRJump_0x11497:
+.SkipFastMusic ;$11497
 	inc e
 	call UnknownCall_0x11454
-	ld a, [$A50D]
+	ld a, [sFastMusic]
 	and a
 	jr z, UnknownRJump_0x114A7
 	dec e
@@ -16747,7 +16747,7 @@ UnknownRJump_0x115B6:
 	jr UnknownRJump_0x115A2
 
 UnknownRJump_0x115CD:
-	ld hl, $A469
+	ld hl, sCurSong
 	ld [hl], 0
 	call UnknownCall_0x13F5E
 	ret
@@ -16830,7 +16830,7 @@ UnknownRJump_0x11635:
 	jr UnknownRJump_0x115F3
 
 UnknownCall_0x11638:
-	ld hl, $A469
+	ld hl, sCurSong
 	ld a, [hl]
 	and a
 	ret z
@@ -17604,7 +17604,7 @@ UnknownCall_0x13F5E:
 	ld a, 3
 	ld [$A455], a
 	xor a
-	ld [$A469], a
+	ld [sCurSong], a
 
 UnknownCall_0x13F6B:
 	xor a
@@ -17711,7 +17711,7 @@ UnknownJump_0x1407C:
 	ld a, 228
 	ld [sBGPalette], a
 	ld a, 208
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	call UnknownCall_0x14113
 	ld a, [$A267]
 	cp $05
@@ -17751,7 +17751,7 @@ UnknownRJump_0x140E5:
 	and a
 	jr nz, UnknownRJump_0x140E5
 	ld a, 15
-	ld [$A2CE], a
+	ld [sSoundDisabled], a
 	xor a
 	ld [$A2CF], a
 	ldh_n_a $97
@@ -17885,10 +17885,10 @@ UnknownRJump_0x3000C:
 	ld [sBGPalette], a
 	ldh_n_a $47
 	ld a, 208
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ldh_n_a $48
 	ld a, 56
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ldh_n_a $49
 	ld a, 40
 	ld [$FF00+$C2], a
@@ -18530,7 +18530,7 @@ UnknownRJump_0x30494:
 	or b
 	jr nz, UnknownRJump_0x3050A
 	ld a, 208
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld hl, $44F1
 	ld a, [$A269]
 	ld e, a
@@ -18580,13 +18580,13 @@ UnknownRJump_0x3050A:
 	ld a, [hl]
 	ld [$FF00+$C6], a
 	ld a, 208
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ldh_a_n $97
 	and $1F
 	cp $04
 	jp nc, UnknownJump_0x3045B
 	ld a, 0
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	jp UnknownJump_0x3045B
 	ld a, [$FF00+$C0]
 	ld [$FF00+$C4], a
@@ -18720,10 +18720,10 @@ UnknownRJump_0x30629:
 	ld [sBGPalette], a
 	ldh_n_a $47
 	ld a, 208
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ldh_n_a $48
 	ld a, 56
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ldh_n_a $49
 	xor a
 	ld [$A2B0], a
@@ -18784,9 +18784,9 @@ INCBIN "baserom.gb", $30697, $3069F - $30697
 	ld a, [hli]
 	ld [sBGPalette], a
 	ld a, [hli]
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld a, [hl]
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld a, 187
 	ld [$FF00+$C6], a
 	ld a, [$A266]
@@ -21863,7 +21863,7 @@ UnknownCall_0x3D6EB:
 	ld a, 225
 	ld [sBGPalette], a
 	ld a, 57
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld de, $66AA
 	call UnknownCall_0x3E2A2
 	ld a, 195
@@ -23051,7 +23051,7 @@ UnknownRJump_0x3E02E:
 	ld a, 225
 	ld [sBGPalette], a
 	ld a, 57
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	jr UnknownRJump_0x3E08F
 
 UnknownRJump_0x3E053:
@@ -23064,14 +23064,14 @@ UnknownRJump_0x3E053:
 	ld [sBGPalette], a
 	ld a, 57
 	xor $FF
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	jr UnknownRJump_0x3E08F
 
 UnknownRJump_0x3E06B:
 	ld a, 225
 	ld [sBGPalette], a
 	ld a, 57
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld a, [$A6BD]
 	cp $38
 	jr nz, UnknownRJump_0x3E08F
@@ -23080,7 +23080,7 @@ UnknownRJump_0x3E06B:
 	ld [sBGPalette], a
 	ld a, 57
 	xor $FF
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld a, 1
 	ld [$A797], a
 
@@ -23455,8 +23455,8 @@ UnknownRJump_0x3E319:
 	ld d, 0
 	add de
 	ld a, [hl]
-	ld [sOAMPalette], a
-	ld [$A280], a
+	ld [sOAMPalette1], a
+	ld [sOAMPalette2], a
 	pop de
 	ld b, 2
 
@@ -23578,8 +23578,8 @@ UnknownRJump_0x3E3D3:
 	ld d, 0
 	add de
 	ld a, [hl]
-	ld [sOAMPalette], a
-	ld [$A280], a
+	ld [sOAMPalette1], a
+	ld [sOAMPalette2], a
 	pop de
 	ld b, 2
 
@@ -23718,9 +23718,9 @@ UnknownJump_0x3E4C1:
 	ld a, 225
 	ld [sBGPalette], a
 	ld a, 208
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld a, 57
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld a, 48
 
 UnknownRJump_0x3E4D2:
@@ -24185,8 +24185,8 @@ UnknownRJump_0x3E9FF:
 	ld d, 0
 	add de
 	ld a, [hl]
-	ld [sOAMPalette], a
-	ld [$A280], a
+	ld [sOAMPalette1], a
+	ld [sOAMPalette2], a
 	pop de
 	sla d
 	sla d
@@ -24236,9 +24236,9 @@ UnknownRJump_0x3EAA8:
 	sla e
 	add de
 	ld a, [hli]
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld a, [hl]
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	pop de
 	inc e
 	ld a, e
@@ -24908,9 +24908,9 @@ UnknownCall_0x3EF2B:
 	ld a, 228
 	ld [sBGPalette], a
 	ld a, 208
-	ld [sOAMPalette], a
+	ld [sOAMPalette1], a
 	ld a, 57
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld a, [$A24F]
 	or a
 	jr z, UnknownRJump_0x3EF56
@@ -25791,7 +25791,7 @@ UnknownCall_0x3F5A4:
 	ld a, 5
 	ld [$A460], a
 	ld a, 57
-	ld [$A280], a
+	ld [sOAMPalette2], a
 	ld a, 195
 	ldh_n_a $40
 	ld a, 21

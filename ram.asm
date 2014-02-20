@@ -17,7 +17,11 @@ sCoinLow = $A262
 sCoinHigh = $A263
 sSpinJump = $A268
 sBGPalette = $A27E
-sOAMPalette = $A27F
+sOAMPalette1 = $A27F
+sOAMPalette2 = $A280
+sSoundDisabled = $A2CE
+sCurSong = $A469
+sFastMusic = $A50D
 
 hKeysHeld = $FF80
 hKeysPressed = $FF81
