@@ -3,6 +3,7 @@ sVVelocityIndex = $A201
 sMarioOnGround = $A214
 sMarioInAir = $A215
 sCurPowerup = $A216
+sPipeTravelDirection = $A221
 sMarioX = $A227
 sMarioXU = $A228
 sMarioY = $A229

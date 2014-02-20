@@ -693,7 +693,7 @@ UnknownRJump_0x060F:
 	call UnknownCall_0x2062
 	call UnknownCall_0x2D0A
 	call UnknownCall_0x2C82
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	cp $10
 	call c, UnknownCall_0x2D7D
 	ld a, [$A287]
@@ -1925,7 +1925,7 @@ UnknownCall_0x0F2A:
 UnknownCall_0x0F71:
 	call UnknownCall_0x307D
 	call UnknownCall_0x13FE
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	cp $10
 	jr nc, UnknownRJump_0x0FBB
 	call UnknownCall_0x0FF2
@@ -2142,7 +2142,7 @@ UnknownRJump_0x10EB:
 	ret
 
 UnknownCall_0x10EC:
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	cp $10
 	jr nz, UnknownRJump_0x1111
 	ld a, [$FF00+$C0]
@@ -2158,11 +2158,11 @@ UnknownCall_0x10EC:
 	call UnknownCall_0x1E36
 	ret c
 	xor a
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 	ret
 
 UnknownRJump_0x1111:
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	cp $20
 	jr nz, UnknownRJump_0x1136
 	ld a, [$FF00+$C0]
@@ -2178,11 +2178,11 @@ UnknownRJump_0x1111:
 	call UnknownCall_0x1E36
 	ret c
 	xor a
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 	ret
 
 UnknownRJump_0x1136:
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	cp $30
 	jr nz, UnknownRJump_0x1160
 	ld a, [$FF00+$C2]
@@ -2200,11 +2200,11 @@ UnknownRJump_0x1136:
 	call UnknownCall_0x1E7C
 	ret c
 	xor a
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 	ret
 
 UnknownRJump_0x1160:
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	cp $40
 	ret nz
 	ld a, [$FF00+$C2]
@@ -2222,11 +2222,11 @@ UnknownRJump_0x1160:
 	call UnknownCall_0x1E7C
 	ret c
 	xor a
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 	ret
 
 UnknownCall_0x1189:
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	and a
 	ret z
 	cp $01
@@ -2242,14 +2242,14 @@ UnknownCall_0x1189:
 	cp $07
 	ret nc
 	ld a, 16
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 	ld a, 5
 	ld [$A460], a
 	xor a
 	ld [$A291], a
 	ld [$A880], a
 	ld [$A890], a
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	ld a, 128
 	ld [sHVelocityIndex], a
 	ret
@@ -2268,7 +2268,7 @@ UnknownRJump_0x11C0:
 	cp $07
 	ret nc
 	ld a, 32
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 	ld a, [$FF00+$C0]
 	sub 2
 	ld [$FF00+$C0], a
@@ -2281,7 +2281,7 @@ UnknownRJump_0x11C0:
 	ld [$A291], a
 	ld [$A880], a
 	ld [$A890], a
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	ld a, 128
 	ld [sHVelocityIndex], a
 	ret
@@ -2312,7 +2312,7 @@ UnknownRJump_0x120E:
 
 UnknownRJump_0x1225:
 	ld a, 48
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 	xor a
 	ld [$A291], a
 	ld [$A880], a
@@ -2339,7 +2339,7 @@ UnknownRJump_0x1244:
 
 UnknownRJump_0x1255:
 	ld a, 64
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 	ld a, 5
 	ld [$A460], a
 	xor a
@@ -2475,13 +2475,13 @@ UnknownRJump_0x134F:
 	ld a, 255
 	ld [sMarioOnGround], a
 	xor a
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 	ld a, [$A20D]
 	and $FE
 	cp $08
 	jr nz, UnknownRJump_0x1366
 	ld a, 1
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 
 UnknownRJump_0x1366:
 	ld a, [$A283]
@@ -2500,7 +2500,7 @@ UnknownJump_0x1378:
 	ld a, 255
 	ld [sMarioOnGround], a
 	xor a
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 	ret
 
 UnknownData_0x1382:
@@ -2512,11 +2512,11 @@ UnknownCall_0x13FE:
 	ld [$A202], a
 	ld [$A218], a
 	ld [$A283], a
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	cp $10
 	ret nc
 	xor a
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 	ret
 
 UnknownCall_0x1413:
@@ -2791,13 +2791,13 @@ UnknownRJump_0x15CF:
 UnknownRJump_0x15F4:
 	call UnknownCall_0x1993
 	xor a
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 	ld a, [$A20D]
 	and $FE
 	cp $0A
 	jr nz, UnknownRJump_0x1609
 	ld a, 2
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 
 UnknownRJump_0x1609:
 	ret
@@ -3135,7 +3135,7 @@ UnknownRJump_0x188B:
 	cp $0C
 	jr nz, UnknownRJump_0x18AE
 	ld a, 3
-	ld [$A221], a
+	ld [sPipeTravelDirection], a
 
 UnknownRJump_0x18AE:
 	ret
@@ -7457,14 +7457,14 @@ UnknownRJump_0x5305:
 UnknownJump_0x530D:
 	ld a, 1
 	ld [$FF00+$BB], a
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	cp $10
 	jr c, UnknownRJump_0x532D
 	xor a
 	ld [$FF00+$BB], a
 	ld a, 16
 	ld [$FF00+$C6], a
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	cp $30
 	jp c, UnknownJump_0x5447
 	jp z, UnknownJump_0x53AD
@@ -26362,7 +26362,7 @@ UnknownRJump_0x58423:
 	ld b, 3
 	call UnknownCall_0x3D22
 	jr UnknownRJump_0x58411
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	and $F0
 	jr z, UnknownRJump_0x58452
 	xor a
@@ -26437,7 +26437,7 @@ UnknownRJump_0x584C3:
 	ld [$AF3A], a
 	call UnknownCall_0x3ADC
 	ret
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	and $F0
 	jp nz, UnknownJump_0x5B2D7
 	ld a, [$FF00+$DF]
@@ -26448,7 +26448,7 @@ UnknownRJump_0x584C3:
 	dec a
 	jr z, UnknownRJump_0x58537
 	jr UnknownRJump_0x584F3
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	and $F0
 	jp nz, UnknownJump_0x5B2D7
 	ld a, [$FF00+$DF]
@@ -26510,7 +26510,7 @@ UnknownRJump_0x58537:
 	xor a
 	ld [$FF00+$DF], a
 	ret
-	ld a, [$A221]
+	ld a, [sPipeTravelDirection]
 	and $F0
 	jp nz, UnknownJump_0x5B2D7
 	ld a, [$FF00+$DF]
