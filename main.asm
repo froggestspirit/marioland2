@@ -19212,15 +19212,34 @@ SECTION "bank0D", ROMX, BANK[$0D]
 
 
 UnknownData_0x34000:
-INCBIN "baserom.gb", $34000, $38000 - $34000
-
+INCBIN "baserom.gb", $34000, $34800 - $34000
+INCBIN "gfx/overworld/overworld.2bpp"
+INCBIN "baserom.gb", $35800, $36000 - $35800
+INCBIN "gfx/overworld/macrozone.2bpp"
+INCBIN "tilemaps/overworld/overworld1x1.bin"
+INCBIN "tilemaps/overworld/overworld2x1.bin"
+INCBIN "tilemaps/overworld/overworld1x2.bin"
+INCBIN "tilemaps/overworld/overworld2x2.bin"
 
 
 SECTION "bank0E", ROMX, BANK[$0E]
 
 
 UnknownData_0x38000:
-INCBIN "baserom.gb", $38000, $3C000 - $38000
+INCBIN "baserom.gb", $38000, $38500 - $38000
+INCBIN "gfx/overworld/pumpkinzone.2bpp"
+INCBIN "baserom.gb", $38800, $38800 - $38800
+INCBIN "gfx/overworld/minigamehill.2bpp"
+INCBIN "baserom.gb", $39800, $3A000 - $39800
+INCBIN "gfx/overworld/treezone.2bpp"
+INCBIN "tilemaps/overworld/pumpkinzone.bin"
+INCBIN "tilemaps/overworld/treezone.bin"
+INCBIN "tilemaps/overworld/spacezone.bin"
+INCBIN "tilemaps/overworld/macrozone.bin"
+INCBIN "tilemaps/overworld/turtlezone.bin"
+INCBIN "tilemaps/overworld/mariozone.bin"
+INCBIN "tilemaps/overworld/wariocastle.bin"
+INCBIN "baserom.gb", $3BFC0, $3C000 - $3BFC0
 
 
 
@@ -25790,7 +25809,16 @@ SECTION "bank10", ROMX, BANK[$10]
 
 
 UnknownData_0x40000:
-INCBIN "baserom.gb", $40000, $44000 - $40000
+INCBIN "baserom.gb", $40000, $40800 - $40000
+INCBIN "gfx/overworld/spacezone.2bpp"
+INCBIN "baserom.gb", $41800, $42000 - $41800
+INCBIN "gfx/overworld/mariocastle.2bpp"
+INCBIN "tilemaps/overworld/minigamehill.bin"
+INCBIN "tilemaps/minigame/30coin.bin"
+INCBIN "tilemaps/minigame/50coin.bin"
+INCBIN "tilemaps/minigame/200coin.bin"
+INCBIN "tilemaps/minigame/999coin.bin"
+INCBIN "baserom.gb", $43B40, $44000 - $43B40
 
 
 
@@ -25798,7 +25826,14 @@ SECTION "bank11", ROMX, BANK[$11]
 
 
 UnknownData_0x44000:
-INCBIN "baserom.gb", $44000, $48000 - $44000
+INCBIN "baserom.gb", $44000, $44800 - $44000
+INCBIN "gfx/overworld/mariozone.2bpp"
+INCBIN "baserom.gb", $45800, $46000 - $45800
+INCBIN "gfx/overworld/wariocastle.2bpp"
+INCBIN "baserom.gb", $47000, $47800 - $47000
+INCBIN "tilemaps/minigame/conveyor.bin"
+INCBIN "tilemaps/minigame/rat.bin"
+INCBIN "baserom.gb", $47C80, $48000 - $47C80
 
 
 
@@ -35730,8 +35765,8 @@ SECTION "bank19", ROMX, BANK[$19]
 
 
 UnknownData_0x64000:
-INCBIN "baserom.gb", $64000, $66000 - $64000
-
+INCBIN "gfx/coingame.2bpp"
+INCBIN "gfx/bonusgame.2bpp"
 
 UnknownCall_0x66000:
 	ld a, [$AF3E]
