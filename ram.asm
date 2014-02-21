@@ -20,6 +20,8 @@ sBGPalette = $A27E
 sOAMPalette1 = $A27F
 sOAMPalette2 = $A280
 sSoundDisabled = $A2CE
+sEasyMode = $A2E4
+
 sCurSong = $A469
 sFastMusic = $A50D
 
