@@ -2703,7 +2703,7 @@ INCBIN "baserom.gb", $1559, $156B - $1559
 
 
 UnknownRJump_0x156B:
-	ld hl, MarioSpeedTableVSpace
+	ld hl, MarioSpeedTableVWater
 	ld a, [$A287]
 	and a
 	jr nz, UnknownRJump_0x1580
@@ -2711,7 +2711,7 @@ UnknownRJump_0x156B:
 	ld a, [$A26D]
 	and a
 	jr z, UnknownRJump_0x1580
-	ld hl, MarioSpeedTableVWater
+	ld hl, MarioSpeedTableVGoo
 
 UnknownRJump_0x1580:
 	ld a, [sVVelocityIndex]
@@ -3137,14 +3137,14 @@ MarioSpeedTableV: ;$18AF
 	db $FD, $FF, $FF, $FE, $FF, $FE, $FD, $FE, $FD, $FD, $FD, $FD, $FD, $FD, $FD, $FD
 	db $FD, $FD, $FD, $FD, $FD, $FD, $FD, $FD, $FD, $FD, $FD, $FD
 
-MarioSpeedTableVWater: ;$18FB
+MarioSpeedTableVGoo: ;$18FB
 	db $01, $01, $01, $00, $01, $00, $00, $01, $00, $00, $00, $00, $00, $00, $00, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $FF, $00
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 	db $FF, $00, $00, $FF, $00, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
 		
-MarioSpeedTableVSpace: ;$1947
+MarioSpeedTableVWater: ;$1947 Also used for outer space and hippo bubble
 	db $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01
 	db $01, $00, $01, $00, $00, $00, $00, $01, $00, $00, $00, $00, $00, $00, $FF, $00
 	db $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
