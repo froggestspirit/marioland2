@@ -185,7 +185,7 @@ UnknownRJump_0x534C:
 	ld a, [sMarioDirection]
 	cp $01
 	jp nz, UnknownJump_0x53CF
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	bit 1, a
 	jr z, UnknownRJump_0x5377
 	ld a, [sMarioOnGround]
@@ -252,7 +252,7 @@ UnknownRJump_0x53BD:
 	jp UnknownJump_0x5447
 
 UnknownJump_0x53CF:
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	bit 1, a
 	jr z, UnknownRJump_0x53F2
 	ld a, [sMarioOnGround]
@@ -431,7 +431,7 @@ UnknownRJump_0x54FB:
 	xor a
 	ld [$FF00+$C7], a
 	ld [$FF00+$BB], a
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	bit 2, a
 	jr z, UnknownRJump_0x551E
 	ld a, 1
@@ -510,7 +510,7 @@ UnknownJump_0x5579:
 
 UnknownRJump_0x5589:
 	ld hl, $55CB
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
 	add de
@@ -534,7 +534,7 @@ UnknownRJump_0x559F:
 	and a
 	jr z, UnknownRJump_0x55C6
 	ld hl, $377B
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	sla a
 	sla a
 	sla a
@@ -713,7 +713,7 @@ UnknownRJump_0x5A07:
 	add de
 	ld a, [hl]
 	ld c, a
-	ld a, [$A2B0]
+	ld a, [sScrollY]
 	ld b, a
 	ld a, [$FF00+$B7]
 	sub b
@@ -721,7 +721,7 @@ UnknownRJump_0x5A07:
 	ld [$FF00+$C4], a
 	ld a, [$A23F]
 	ld c, a
-	ld a, [$A2B1]
+	ld a, [sScrollX]
 	ld b, a
 	ld a, [$FF00+$B9]
 	sub b
@@ -734,7 +734,7 @@ UnknownRJump_0x5A07:
 	call UnknownCall_0x5297
 	ld a, [$A23F]
 	ld c, a
-	ld a, [$A2B1]
+	ld a, [sScrollX]
 	ld b, a
 	ld a, [$FF00+$B9]
 	sub b
@@ -790,13 +790,13 @@ UnknownJump_0x5A9E:
 	add de
 	ld a, [hl]
 	ld c, a
-	ld a, [$A2B0]
+	ld a, [sScrollY]
 	ld b, a
 	ld a, [$FF00+$B7]
 	sub b
 	add c
 	ld [$FF00+$C4], a
-	ld a, [$A2B1]
+	ld a, [sScrollX]
 	ld b, a
 	ld a, [$FF00+$B9]
 	sub b
@@ -840,13 +840,13 @@ UnknownJump_0x5B06:
 	add de
 	ld a, [hl]
 	ld c, a
-	ld a, [$A2B0]
+	ld a, [sScrollY]
 	ld b, a
 	ld a, [$FF00+$B7]
 	sub b
 	add c
 	ld [$FF00+$C4], a
-	ld a, [$A2B1]
+	ld a, [sScrollX]
 	ld b, a
 	ld a, [$FF00+$B9]
 	sub b
@@ -913,13 +913,13 @@ UnknownRJump_0x5B8A:
 	add de
 	ld a, [hl]
 	ld c, a
-	ld a, [$A2B0]
+	ld a, [sScrollY]
 	ld b, a
 	ld a, [$FF00+$B7]
 	sub b
 	add c
 	ld [$FF00+$C4], a
-	ld a, [$A2B1]
+	ld a, [sScrollX]
 	ld b, a
 	ld a, [$FF00+$B9]
 	sub b
@@ -2695,7 +2695,7 @@ UnknownRJump_0x8DDF:
 
 UnknownCall_0x8DFD:
 	ld b, 0
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	cp $05
 	jr z, UnknownRJump_0x8E20
 	inc b
@@ -7231,13 +7231,13 @@ UnknownRJump_0xC077:
 	jr UnknownRJump_0xC042
 
 UnknownCall_0xC090:
-	ld a, [$A2B0]
+	ld a, [sScrollY]
 	ld b, a
 	ld a, [$FF00+$D4]
 	add 16
 	sub b
 	ld [$FF00+$D9], a
-	ld a, [$A2B1]
+	ld a, [sScrollX]
 	ld b, a
 	ld a, [$FF00+$D1]
 	add 8
@@ -7266,7 +7266,7 @@ UnknownCall_0xEBBB:
 	call UnknownCall_0xEC17
 	call UnknownCall_0xEC31
 	call UnknownCall_0xEC4B
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	add a
 	ld e, a
 	ld d, 0
@@ -7378,7 +7378,7 @@ UnknownCall_0xEC4B:
 	ld [$AF1E], a
 	ld a, 6
 	ld [$AF1F], a
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	cp $0A
 	ret c
 	ld a, 1
@@ -10384,7 +10384,7 @@ UnknownRJump_0x1404C:
 	ld a, 136
 	ldh_n_a $4A
 	xor a
-	ld [$A2B0], a
+	ld [sScrollY], a
 	ld a, 195
 	ldh_n_a $40
 	ld a, 5
@@ -10453,7 +10453,7 @@ UnknownRJump_0x140E5:
 	ld d, 0
 	add de
 	ld a, [hl]
-	ld [$A269], a
+	ld [sCurLevel], a
 	ld a, 255
 	ld [$A468], a
 	ld a, 11
@@ -10481,10 +10481,15 @@ INCBIN "baserom.gb", $14121, $18000 - $14121
 SECTION "bank06", ROMX, BANK[$06]
 
 
-UnknownData_0x18000:
+GFX_Mario:
 INCBIN "gfx/mario.2bpp"
+
+GFX_MarioDark:
 INCBIN "gfx/mariodark.2bpp"
+
+GFX_MarioMoon:
 INCBIN "gfx/mariomoon.2bpp"
+
 INCBIN "gfx/common/goomba.2bpp"
 INCBIN "gfx/common/koopa.2bpp"
 INCBIN "gfx/common/pirannahplant.2bpp"
@@ -10588,8 +10593,8 @@ UnknownRJump_0x3000C:
 	call UnknownCall_0x28D9
 	xor a
 	ld [$A277], a
-	ld [$A2B0], a
-	ld [$A2B1], a
+	ld [sScrollY], a
+	ld [sScrollX], a
 	ld [$A2C6], a
 	ld a, 131
 	ldh_n_a $40
@@ -11150,7 +11155,7 @@ UnknownRJump_0x3042D:
 	ld a, 192
 	ld [$FF00+$C0], a
 	ld hl, $4985
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
 	add de
@@ -11223,7 +11228,7 @@ UnknownRJump_0x30494:
 	ld a, 208
 	ld [sOAMPalette1], a
 	ld hl, $44F1
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
 	add de
@@ -11257,14 +11262,14 @@ INCBIN "baserom.gb", $304F1, $3050A - $304F1
 
 UnknownRJump_0x3050A:
 	ld hl, $499D
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
 	add de
 	ld a, [hl]
 	ld [$FF00+$C0], a
 	ld hl, $49B5
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
 	add de
@@ -11307,7 +11312,7 @@ UnknownRJump_0x30567:
 	add 191
 	ld [$FF00+$C6], a
 	ld hl, $499D
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
 	add de
@@ -11417,9 +11422,9 @@ UnknownRJump_0x30629:
 	ld [sOAMPalette2], a
 	ldh_n_a $49
 	xor a
-	ld [$A2B0], a
+	ld [sScrollY], a
 	ldh_n_a $42
-	ld [$A2B1], a
+	ld [sScrollX], a
 	ldh_n_a $43
 	ld [$A26E], a
 	ld a, 64
@@ -11484,7 +11489,7 @@ INCBIN "baserom.gb", $30697, $3069F - $30697
 	and a
 	ret nz
 	ld a, 24
-	ld [$A269], a
+	ld [sCurLevel], a
 	ld a, 22
 	ldh_n_a $9B
 	ret
@@ -12170,7 +12175,7 @@ UnknownRJump_0x3C1A2:
 	ld a, [hl]
 	cp $FE
 	jr z, UnknownRJump_0x3C201
-	ld [$A269], a
+	ld [sCurLevel], a
 	ld a, c
 	ld [$A27D], a
 	ld a, 255
@@ -13256,9 +13261,9 @@ UnknownRJump_0x3CA45:
 	ld a, d
 	ld [hld], a
 	ld [hl], e
-	ld a, [$A2B1]
+	ld a, [sScrollX]
 	inc a
-	ld [$A2B1], a
+	ld [sScrollX], a
 	ld a, [$A7A0]
 	or a
 	ret nz
@@ -13284,9 +13289,9 @@ UnknownCall_0x3CA63:
 	ld a, d
 	ld [hld], a
 	ld [hl], e
-	ld a, [$A2B1]
+	ld a, [sScrollX]
 	dec a
-	ld [$A2B1], a
+	ld [sScrollX], a
 	ld a, [$A7A0]
 	or a
 	ret nz
@@ -13312,9 +13317,9 @@ UnknownCall_0x3CA8A:
 	ld a, d
 	ld [hld], a
 	ld [hl], e
-	ld a, [$A2B0]
+	ld a, [sScrollY]
 	dec a
-	ld [$A2B0], a
+	ld [sScrollY], a
 	ld a, [$A7A0]
 	or a
 	ret nz
@@ -13345,9 +13350,9 @@ UnknownRJump_0x3CABF:
 	ld a, d
 	ld [hld], a
 	ld [hl], e
-	ld a, [$A2B0]
+	ld a, [sScrollY]
 	inc a
-	ld [$A2B0], a
+	ld [sScrollY], a
 	ld a, [$A7A0]
 	or a
 	ret nz
@@ -13861,8 +13866,8 @@ UnknownCall_0x3D0FF:
 	ld de, $9800
 	call FarCopyMem
 	ld a, 0
-	ld [$A2B1], a
-	ld [$A2B0], a
+	ld [sScrollX], a
+	ld [sScrollY], a
 	ld [$A690], a
 	ld a, 2
 	ld [$A68B], a
@@ -13982,8 +13987,8 @@ UnknownCall_0x3D208:
 	ld de, $9800
 	call FarCopyMem
 	ld a, 0
-	ld [$A2B1], a
-	ld [$A2B0], a
+	ld [sScrollX], a
+	ld [sScrollY], a
 	ld [$A690], a
 	ld a, 1
 	ld [$A68B], a
@@ -14151,8 +14156,8 @@ UnknownCall_0x3D371:
 	ld de, $9800
 	call FarCopyMem
 	ld a, 0
-	ld [$A2B1], a
-	ld [$A2B0], a
+	ld [sScrollX], a
+	ld [sScrollY], a
 	ld [$A690], a
 	ld a, 33
 	ld [$A844], a
@@ -14289,8 +14294,8 @@ UnknownRJump_0x3D4D3:
 	dec c
 	jr nz, UnknownRJump_0x3D4D3
 	ld a, 0
-	ld [$A2B1], a
-	ld [$A2B0], a
+	ld [sScrollX], a
+	ld [sScrollY], a
 	ld [$A690], a
 	ld a, 4
 	ld [$A68B], a
@@ -14455,8 +14460,8 @@ UnknownCall_0x3D61F:
 	ld de, $9800
 	call FarCopyMem
 	ld a, 0
-	ld [$A2B1], a
-	ld [$A2B0], a
+	ld [sScrollX], a
+	ld [sScrollY], a
 	ld [$A690], a
 	ld a, 5
 	ld [$A68B], a
@@ -14545,8 +14550,8 @@ UnknownCall_0x3D6EB:
 	ld de, $9800
 	call FarCopyMem
 	ld a, 0
-	ld [$A2B1], a
-	ld [$A2B0], a
+	ld [sScrollX], a
+	ld [sScrollY], a
 	ld [$A690], a
 	ld a, 7
 	ld [$A68B], a
@@ -14618,8 +14623,8 @@ UnknownCall_0x3D79A:
 	ld de, $9800
 	call FarCopyMem
 	ld a, 0
-	ld [$A2B1], a
-	ld [$A2B0], a
+	ld [sScrollX], a
+	ld [sScrollY], a
 	ld [$A690], a
 	ld a, 6
 	ld [$A68B], a
@@ -14715,8 +14720,8 @@ UnknownCall_0x3D880:
 	ld de, $9800
 	call FarCopyMem
 	ld a, 0
-	ld [$A2B1], a
-	ld [$A2B0], a
+	ld [sScrollX], a
+	ld [sScrollY], a
 	ld [$A690], a
 	ld a, 8
 	ld [$A68B], a
@@ -15364,8 +15369,8 @@ UnknownRJump_0x3DD16:
 	ld a, 255
 	ld [$A6CF], a
 	ld a, 0
-	ld [$A2B1], a
-	ld [$A2B0], a
+	ld [sScrollX], a
+	ld [sScrollY], a
 	ld a, [$A7BC]
 	or a
 	ret z
@@ -15376,9 +15381,9 @@ UnknownRJump_0x3DD16:
 	ret z
 	ld a, [$A7BC]
 	srl a
-	ld [$A2B1], a
+	ld [sScrollX], a
 	cpl
-	ld [$A2B0], a
+	ld [sScrollY], a
 	ld a, [$A7BC]
 	or a
 	ret nz
@@ -17907,9 +17912,9 @@ UnknownCall_0x3F156:
 	call UnknownCall_0x2AAA
 	di
 	ldh_a_n $B7
-	ld [$A2B0], a
+	ld [sScrollY], a
 	ldh_a_n $B9
-	ld [$A2B1], a
+	ld [sScrollX], a
 	ld a, 0
 	ld [$A690], a
 	ld [$A789], a
@@ -18127,8 +18132,8 @@ UnknownCall_0x3F307:
 	call FarCopyMem
 	call UnknownCall_0x3F58
 	xor a
-	ld [$A2B1], a
-	ld [$A2B0], a
+	ld [sScrollX], a
+	ld [sScrollY], a
 	ld [$A690], a
 	ldh_n_a $81
 	ld [$A69A], a
@@ -18323,8 +18328,8 @@ UnknownCall_0x3F4B1:
 	call FarCopyMem
 	call UnknownCall_0x3F58
 	xor a
-	ld [$A2B1], a
-	ld [$A2B0], a
+	ld [sScrollX], a
+	ld [sScrollY], a
 	ld [$A690], a
 	ldh_n_a $81
 	ld [$A69A], a
@@ -18439,8 +18444,8 @@ UnknownCall_0x3F5A4:
 	call FarCopyMem
 	call UnknownCall_0x3F58
 	xor a
-	ld [$A2B1], a
-	ld [$A2B0], a
+	ld [sScrollX], a
+	ld [sScrollY], a
 	ld [$A690], a
 	ldh_n_a $81
 	ld [$A69A], a
@@ -28771,7 +28776,7 @@ INCBIN "baserom.gb", $68125, $68139 - $68125
 	or b
 	xor $FF
 	add 25
-	ld [$A2B0], a
+	ld [sScrollY], a
 	ld b, a
 	ld a, 44
 	sub b

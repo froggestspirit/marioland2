@@ -1,5 +1,6 @@
 SECTION "bank00", ROM0
-
+;$120A6 main level theme
+;$1f51
 
 UnknownData_0x0000:
 INCBIN "baserom.gb", $0000, $0028 - $0000
@@ -56,9 +57,9 @@ VBlank: ;$0154
 	push bc
 	push de
 	push hl
-	ld a, [$A2B0]
+	ld a, [sScrollY]
 	ld [$FF00+$42], a
-	ld a, [$A2B1]
+	ld a, [sScrollX]
 	ld [$FF00+$43], a
 	ld a, [sBGPalette]
 	ld [$FF00+$47], a
@@ -234,7 +235,7 @@ UnknownRJump_0x028D:
 	jp UnknownJump_0x0264
 
 UnknownJump_0x029F:
-UnknownData_0x029F:
+UnknownData_0x029F: ;soft reset?
 INCBIN "baserom.gb", $029F, $02AD - $029F
 
 
@@ -523,13 +524,13 @@ UnknownRJump_0x049C:
 	ld [$A2B4], a
 	ld a, 48
 	ld [$A24B], a
-	ld hl, $1F71
-	ld a, [$A269]
+	ld hl, LevelPropertiesScroll
+	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
 	add de
-	ld a, [hl]
-	ld [$A2C8], a
+	ld a, [hl] ;check level autoscroll properties
+	ld [sAutoScroll], a
 	ld a, [$A257]
 	and a
 	jr z, UnknownRJump_0x04DD
@@ -539,13 +540,13 @@ INCBIN "baserom.gb", $04CA, $04DD - $04CA
 
 
 UnknownRJump_0x04DD:
-	ld hl, $1F91
-	ld a, [$A269]
+	ld hl, LevelPropertiesSpace
+	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
 	add de
-	ld a, [hl]
-	ld [$A287], a
+	ld a, [hl] ;check level space physics
+	ld [sMoonPhysics], a
 	ld a, [$FF00+$9B]
 	inc a
 	ld [$FF00+$9B], a
@@ -603,10 +604,10 @@ UnknownRJump_0x052F:
 	ld [$FF00+$CB], a
 	ld a, [$FF00+$C8]
 	sub 120
-	ld [$A2B0], a
+	ld [sScrollY], a
 	ld a, [$FF00+$CA]
 	sub 48
-	ld [$A2B1], a
+	ld [sScrollX], a
 	call UnknownCall_0x07DB
 	ld a, 3 ;prepare bank switch
 	ld [$A24E], a
@@ -623,12 +624,12 @@ UnknownRJump_0x052F:
 	ld [$A468], a
 
 UnknownRJump_0x0598:
-	ld hl, $1F51
-	ld a, [$A269]
+	ld hl, LevelPropertiesUNK
+	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
 	add de
-	ld a, [hl]
+	ld a, [hl] ;level properties unknown
 	ld [$A2D9], a
 	xor a
 	ld [$A266], a
@@ -686,7 +687,7 @@ UnknownRJump_0x060F:
 	ld a, [sPipeTravelDirection]
 	cp $10
 	call c, UnknownCall_0x2D7D
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	bit 1, a
 	call nz, UnknownCall_0x3753
 	call UnknownCall_0x2A58
@@ -721,7 +722,7 @@ UnknownRJump_0x0665:
 	ret
 
 LoadMarioGFX: ;$0669
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	ld hl, $360A
 	ld e, a
 	ld d, 0
@@ -731,11 +732,11 @@ LoadMarioGFX: ;$0669
 	and $0F
 	and a
 	jr nz, .MarioDark
-	ld a, 6 ;prepare bank switch
+	ld a, BANK(GFX_Mario) ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld bc, $0800
-	ld hl, $4000
+	ld hl, GFX_Mario
 	ld de, $8000
 	call CopyMem
 	jr UnknownRJump_0x06C0
@@ -743,21 +744,21 @@ LoadMarioGFX: ;$0669
 .MarioDark
 	cp $01
 	jr nz, .MarioMoon
-	ld a, 6 ;prepare bank switch
+	ld a, BANK(GFX_MarioDark)  ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld bc, $0800
-	ld hl, $4800
+	ld hl, GFX_MarioDark
 	ld de, $8000
 	call CopyMem
 	jr UnknownRJump_0x06C0
 
 .MarioMoon
-	ld a, 6 ;prepare bank switch
+	ld a, BANK(GFX_MarioMoon)  ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld bc, $0800
-	ld hl, $5000
+	ld hl, GFX_MarioMoon
 	ld de, $8000
 	call CopyMem
 
@@ -797,7 +798,7 @@ UnknownRJump_0x06C0:
 	ld bc, $0300
 	ld de, $8800
 	call CopyMem
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	ld hl, $362A
 	sla a
 	sla a
@@ -817,7 +818,7 @@ UnknownRJump_0x06C0:
 	ld l, a
 	ld de, $8B00
 	call CopyMem
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	ld hl, $36AA
 	sla a
 	sla a
@@ -838,7 +839,7 @@ UnknownRJump_0x06C0:
 	ld de, $9200
 	call CopyMem
 	ld hl, $35EA
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
 	add de
@@ -1344,7 +1345,7 @@ UnknownRJump_0x0B39:
 	add de
 	ld a, [hl]
 	ld [$FF00+$98], a
-	ld a, [$A2C8]
+	ld a, [sAutoScroll]
 	and a
 	jr z, UnknownRJump_0x0B5E
 	call UnknownCall_0x0DAF
@@ -1836,7 +1837,7 @@ UnknownRJump_0x0EB0:
 	ld a, 32
 	ld [$A468], a
 	ld [$A292], a
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	cp $18
 	jr nz, UnknownRJump_0x0EE4
 	ld a, [$A2DC]
@@ -1985,7 +1986,7 @@ UnknownCall_0x0FF2:
 	ld a, [$A24F]
 	and a
 	ret nz
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	and a
 	ret z
 	bit 0, a
@@ -2089,7 +2090,7 @@ UnknownCall_0x1090:
 	ld a, [sCurPowerup]
 	cp $02
 	jr nz, UnknownRJump_0x10EB
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	and a
 	jr nz, UnknownRJump_0x10EB
 	ld a, [sVVelocityIndex]
@@ -2279,7 +2280,7 @@ UnknownRJump_0x11C0:
 UnknownRJump_0x11FE:
 	cp $03
 	jr nz, UnknownRJump_0x1244
-	ld a, [$A2C8]
+	ld a, [sAutoScroll]
 	and a
 	jr z, UnknownRJump_0x120E
 	ld a, [$FF00+$CA]
@@ -2350,7 +2351,7 @@ UnknownCall_0x126F:
 	ld a, [sMarioOnGround]
 	and a
 	jr nz, UnknownRJump_0x129A
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	and $0F
 	jr nz, UnknownRJump_0x129A
 	ld a, [sSpinJump]
@@ -2548,7 +2549,7 @@ UnknownRJump_0x144B:
 	ret
 
 UnknownRJump_0x1464:
-	ld a, [$A2C8]
+	ld a, [sAutoScroll]
 	and a
 	jr z, UnknownRJump_0x147F
 	ld a, [sMarioScreenX]
@@ -2618,7 +2619,7 @@ UnknownRJump_0x14CF:
 	ret
 
 UnknownCall_0x14D5:
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	and a
 	jr nz, UnknownRJump_0x14E9
 	ld a, [hKeysHeld]
@@ -2646,7 +2647,7 @@ UnknownRJump_0x14EB:
 	ret
 
 UnknownCall_0x14FA:
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	bit 1, a
 	jr nz, UnknownRJump_0x150C
 	ld a, [$A24D]
@@ -2684,7 +2685,7 @@ UnknownRJump_0x1533:
 	ld [sVVelocityIndex], a
 	cp $30
 	jr nz, UnknownRJump_0x156B
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	and a
 	jr nz, UnknownRJump_0x154E
 	ld a, 24
@@ -2704,7 +2705,7 @@ INCBIN "baserom.gb", $1559, $156B - $1559
 
 UnknownRJump_0x156B:
 	ld hl, MarioSpeedTableVWater
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	and a
 	jr nz, UnknownRJump_0x1580
 	ld hl, MarioSpeedTableV
@@ -2769,7 +2770,7 @@ UnknownRJump_0x15CF:
 	ld [$A2B2], a
 	ld a, 24
 	ld [sVVelocityIndex], a
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	and $0F
 	jr nz, UnknownRJump_0x15F4
 	ld a, [$A26D]
@@ -2830,7 +2831,7 @@ UnknownRJump_0x1637:
 	ld [$A286], a
 	ld a, 1
 	ld [$A460], a
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	and $0F
 	jr z, UnknownRJump_0x1659
 	bit 1, a
@@ -2897,7 +2898,7 @@ UnknownCall_0x16CC:
 	ld a, [$A26D]
 	and a
 	jr nz, UnknownRJump_0x16DE
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	bit 1, a
 	jr nz, UnknownRJump_0x16DE
 	ld a, [sMarioOnGround]
@@ -2961,7 +2962,7 @@ UnknownCall_0x1701:
 	jp UnknownJump_0x17C4
 
 UnknownRJump_0x1749:
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	and a
 	jr nz, UnknownRJump_0x1755
 	ld a, [hKeysHeld]
@@ -3007,7 +3008,7 @@ UnknownRJump_0x1771:
 	jr UnknownRJump_0x17C4
 
 UnknownRJump_0x179E:
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	and a
 	jr nz, UnknownRJump_0x17AA
 	ld a, [hKeysHeld]
@@ -3061,7 +3062,7 @@ UnknownCall_0x181C:
 	ld a, [$A26D]
 	and a
 	jr nz, UnknownRJump_0x1845
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	bit 1, a
 	jr z, UnknownRJump_0x1842
 	ld a, [sMarioOnGround]
@@ -3344,9 +3345,9 @@ UnknownRJump_0x1C9F:
 UnknownRJump_0x1CAA:
 	ld a, 255
 	ld [$A26D], a
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	res 1, a
-	ld [$A287], a
+	ld [sMoonPhysics], a
 	jp UnknownJump_0x1D71
 
 UnknownRJump_0x1CBA:
@@ -3382,28 +3383,28 @@ UnknownRJump_0x1CD7:
 	jr UnknownRJump_0x1D71
 
 UnknownRJump_0x1CFB:
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	and $02
 	ld b, a
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	res 1, a
-	ld [$A287], a
+	ld [sMoonPhysics], a
 	ld a, [$A20D]
 	cp $52
 	jr c, UnknownRJump_0x1D28
 	cp $58
 	jr nc, UnknownRJump_0x1D28
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	set 1, a
-	ld [$A287], a
+	ld [sMoonPhysics], a
 	xor a
 	ld [$A284], a
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	res 2, a
-	ld [$A287], a
+	ld [sMoonPhysics], a
 
 UnknownRJump_0x1D28:
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	and $02
 	cp b
 	jr z, UnknownRJump_0x1D71
@@ -3422,7 +3423,7 @@ UnknownRJump_0x1D3C:
 
 UnknownRJump_0x1D48:
 	call UnknownCall_0x3735
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	bit 1, a
 	jr nz, UnknownRJump_0x1D71
 	ld a, [hKeysHeld]
@@ -3761,7 +3762,25 @@ UnknownCall_0x1F2F:
 	ret
 
 UnknownData_0x1F51:
-INCBIN "baserom.gb", $1F51, $1FD2 - $1F51
+LevelPropertiesUNK: ;$1F51 1 byte per level (unknown)
+	db $00, $00, $08, $08, $08, $08, $08, $00
+	db $00, $00, $08, $00, $00, $00, $00, $08
+	db $00, $00, $08, $08, $00, $00, $00, $00
+	db $08, $00, $00, $00, $08, $00, $00, $08
+
+LevelPropertiesScroll: ;$1F71 1 byte per level (Auto-Scroll)
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $01, $00, $00, $00, $00
+	db $00, $01, $00, $00, $00, $00, $01, $00
+	
+LevelPropertiesSpace: ;$1F91 1 byte per level (Space Physics)
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $00, $00, $00, $00, $00, $00
+	db $00, $00, $08, $01, $00, $00, $00, $00
+	db $00, $00, $00, $00, $08, $00, $00, $00
+
+INCBIN "baserom.gb", $1FB1, $1FD2 - $1FB1
 
 
 ReadJoypad: ;$1FD2
@@ -3838,10 +3857,10 @@ UnknownRJump_0x206D:
 	ld a, [$FF00+$C8]
 	sub 72
 	sub b
-	ld [$A2B0], a
+	ld [sScrollY], a
 	ld a, [$FF00+$CA]
 	sub 80
-	ld [$A2B1], a
+	ld [sScrollX], a
 	ret
 
 UnknownCall_0x207D:
@@ -4419,7 +4438,7 @@ UnknownCall_0x25AF:
 	ld l, a
 	ld bc, $0600
 	ld de, $9200
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	cp $18
 	jr nz, UnknownRJump_0x2614
 	ld bc, $0800
@@ -4451,7 +4470,7 @@ UnknownRJump_0x2614:
 	ld l, a
 	ld bc, $0400
 	ld de, $8B00
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	cp $18
 	jr nz, UnknownRJump_0x264F
 	ld bc, $0700
@@ -4615,7 +4634,7 @@ UnknownRJump_0x2760:
 	ld [$A45E], a
 	ld [$A224], a
 	xor a
-	ld [$A2C8], a
+	ld [sAutoScroll], a
 	ld [$A299], a
 	ld [$A2B4], a
 	ld [sFastMusic], a
@@ -4660,8 +4679,8 @@ UnknownRJump_0x27D2:
 	cp $9B
 	jr nz, UnknownRJump_0x27D2
 	xor a
-	ld [$A2B0], a
-	ld [$A2B1], a
+	ld [sScrollY], a
+	ld [sScrollX], a
 	ld [$FF00+$42], a
 	ld [$FF00+$43], a
 	ld a, 228
@@ -4924,8 +4943,8 @@ UnknownRJump_0x2A02:
 	cp $9C
 	jr nz, UnknownRJump_0x2A02
 	xor a
-	ld [$A2B0], a
-	ld [$A2B1], a
+	ld [sScrollY], a
+	ld [sScrollX], a
 	ld a, 225
 	ld [sBGPalette], a
 	ld a, 210
@@ -5407,11 +5426,11 @@ UnknownRJump_0x2E6F:
 	ld a, [$A2A9]
 	bit 6, a
 	ret z
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	bit 2, a
 	jr z, UnknownRJump_0x2E8E
 	res 2, a
-	ld [$A287], a
+	ld [sMoonPhysics], a
 	ld a, 128
 	ld [$A217], a
 	ret
@@ -5559,7 +5578,7 @@ UnknownRJump_0x2F71:
 UnknownCall_0x2F72:
 	xor a
 	ld [$A256], a
-	ld a, [$A2B0]
+	ld a, [sScrollY]
 	ld b, a
 	ld a, [$FF00+$B7]
 	and $F0
@@ -5567,7 +5586,7 @@ UnknownCall_0x2F72:
 	sub b
 	sub 16
 	ld [$FF00+$B7], a
-	ld a, [$A2B1]
+	ld a, [sScrollX]
 	ld b, a
 	ld a, [$FF00+$B9]
 	add 8
@@ -6332,9 +6351,9 @@ UnknownRJump_0x34D9:
 	jr nz, UnknownRJump_0x34EC
 	ld a, 20
 	ld [$A470], a
-	ld a, [$A287]
+	ld a, [sMoonPhysics]
 	set 2, a
-	ld [$A287], a
+	ld [sMoonPhysics], a
 	jr UnknownRJump_0x3539
 
 UnknownRJump_0x34EC:
@@ -6414,7 +6433,7 @@ UnknownRJump_0x356E:
 	ld a, 20
 	ld [$FF00+$9B], a
 	ret
-	ld a, [$A269]
+	ld a, [sCurLevel]
 	cp $FF
 	jr nz, .CheckEasyMode
 	ld a, 27

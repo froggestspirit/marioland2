@@ -16,10 +16,16 @@ sTimerHigh = $A255
 sCoinLow = $A262
 sCoinHigh = $A263
 sSpinJump = $A268
+sCurLevel = $A269
 sBGPalette = $A27E
 sOAMPalette1 = $A27F
 sOAMPalette2 = $A280
+sMoonPhysics = $A287
+sScrollY = $A2B0
+sScrollX = $A2B1
+sAutoScroll = $A2C8
 sSoundDisabled = $A2CE
+
 sEasyMode = $A2E4
 
 sCurSong = $A469
