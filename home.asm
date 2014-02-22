@@ -1,6 +1,4 @@
 SECTION "bank00", ROM0
-;$120A6 main level theme
-;$1f51
 
 UnknownData_0x0000:
 INCBIN "baserom.gb", $0000, $0028 - $0000
