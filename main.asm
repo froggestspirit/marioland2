@@ -557,8 +557,9 @@ UnknownRJump_0x55C6:
 	ret
 
 UnknownData_0x55CB:
-INCBIN "baserom.gb", $55CB, $591F - $55CB
-
+INCBIN "baserom.gb", $55CB, $560B - $55CB
+include "levelheaders.asm"
+INCBIN "baserom.gb", $588B, $591F - $588B
 
 UnknownJump_0x591F:
 	ld a, [sCoinLow]
@@ -28453,8 +28454,9 @@ UnknownRJump_0x611AC:
 	ret
 
 UnknownData_0x611B1:
-INCBIN "baserom.gb", $611B1, $64000 - $611B1
-
+INCBIN "baserom.gb", $611B1, $61602 - $611B1
+include "owmovementpointers.asm"
+INCBIN "baserom.gb", $61A40, $64000 - $61A40
 
 
 SECTION "bank19", ROMX, BANK[$19]
