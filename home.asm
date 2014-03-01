@@ -797,7 +797,7 @@ UnknownRJump_0x06C0:
 	ld de, $8800
 	call CopyMem
 	ld a, [sCurLevel]
-	ld hl, $362A
+	ld hl, LevelEnemySets
 	sla a
 	sla a
 	ld e, a
@@ -817,7 +817,7 @@ UnknownRJump_0x06C0:
 	ld de, $8B00
 	call CopyMem
 	ld a, [sCurLevel]
-	ld hl, $36AA
+	ld hl, LevelTileSets
 	sla a
 	sla a
 	ld e, a
@@ -6491,8 +6491,10 @@ UnknownRJump_0x356E:
 	ret
 
 UnknownData_0x35EA:
-INCBIN "baserom.gb", $35EA, $3735 - $35EA
-
+INCBIN "baserom.gb", $35EA, $362A - $35EA
+INCLUDE "levels/enemysets.asm"
+INCLUDE "levels/tilesets.asm"
+INCBIN "baserom.gb", $372A, $3735 - $372A
 
 UnknownCall_0x3735:
 	ld a, 1

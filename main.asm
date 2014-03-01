@@ -558,7 +558,7 @@ UnknownRJump_0x55C6:
 
 UnknownData_0x55CB:
 INCBIN "baserom.gb", $55CB, $560B - $55CB
-include "levelheaders.asm"
+include "levels/levelheaders.asm"
 INCBIN "baserom.gb", $588B, $591F - $588B
 
 UnknownJump_0x591F:
@@ -10491,34 +10491,25 @@ INCBIN "gfx/mariodark.2bpp"
 GFX_MarioMoon: ;$19000
 INCBIN "gfx/mariomoon.2bpp"
 
-INCBIN "gfx/common/goomba.2bpp"
-INCBIN "gfx/common/koopa.2bpp"
-INCBIN "gfx/common/pirannahplant.2bpp"
-INCBIN "gfx/treezone/blank1.2bpp"
-INCBIN "gfx/treezone/frog.2bpp"
-INCBIN "gfx/treezone/mole.2bpp"
-INCBIN "gfx/treezone/hedgehog.2bpp"
-INCBIN "gfx/treezone/dragonfly.2bpp"
-INCBIN "gfx/treezone/buzzybomb.2bpp"
-INCBIN "gfx/treezone/jellybull.2bpp"
-INCBIN "gfx/treezone/unknown1.2bpp"
-INCBIN "gfx/treezone/bee.2bpp"
-INCBIN "gfx/treezone/beeskeleton.2bpp"
-INCBIN "gfx/treezone/bigbee.2bpp"
-INCBIN "gfx/treezone/worm.2bpp"
-INCBIN "gfx/treezone/wormspike.2bpp"
-INCBIN "gfx/treezone/egg.2bpp"
-INCBIN "gfx/treezone/blank2.2bpp"
-INCBIN "gfx/common/goomba.2bpp"
-INCBIN "gfx/treezone/owl.2bpp"
-INCBIN "gfx/treezone/cloud.2bpp"
-INCBIN "gfx/common/bird.2bpp"
-INCBIN "gfx/treezone/blank3.2bpp"
-INCBIN "gfx/treezone/boss.2bpp"
-INCBIN "gfx/treezone/blank4.2bpp"
-INCBIN "gfx/common/goldencoin.2bpp"
-INCBIN "gfx/treezone/blank5.2bpp"
-INCBIN "baserom.gb", $1AD80, $1C000 - $1AD80
+GFX_EnemiesClassic: ;$19800
+INCBIN "gfx/enemies/classic.2bpp"
+
+GFX_EnemiesTreeZone1: ;$19B80
+INCBIN "gfx/enemies/treezone1.2bpp"
+
+GFX_EnemiesTreeZone2: ;$19F00
+INCBIN "gfx/enemies/treezone2.2bpp"
+
+GFX_EnemiesTreeZone3: ;$1A280
+INCBIN "gfx/enemies/treezone3.2bpp"
+
+GFX_EnemiesTreeZone4: ;$1A600
+INCBIN "gfx/enemies/treezone4.2bpp"
+
+GFX_EnemiesTreeZoneBoss: ;$1A980
+INCBIN "gfx/enemies/treezoneboss.2bpp"
+
+INCBIN "baserom.gb", $1AD00, $1C000 - $1AD00
 
 
 
@@ -29259,8 +29250,24 @@ SECTION "bank1B", ROMX, BANK[$1B]
 
 
 UnknownData_0x6C000:
-INCBIN "baserom.gb", $6C000, $70000 - $6C000
+INCBIN "baserom.gb", $6C000, $6DE00 - $6C000
 
+GFX_EnemiesMarioZone1: ;$6DE00
+INCBIN "gfx/enemies/mariozone1.2bpp"
+
+GFX_EnemiesMarioZone2: ;$6E180
+INCBIN "gfx/enemies/mariozone2.2bpp"
+
+GFX_EnemiesMarioZone3: ;$6E500
+INCBIN "gfx/enemies/mariozone3.2bpp"
+
+GFX_EnemiesMarioZone4: ;$6E880
+INCBIN "gfx/enemies/mariozone4.2bpp"
+
+GFX_EnemiesMarioZoneBoss: ;$6EC00
+INCBIN "gfx/enemies/mariozoneboss.2bpp"
+
+INCBIN "baserom.gb", $6EF80, $70000 - $6EF80
 
 
 SECTION "bank1C", ROMX, BANK[$1C]
