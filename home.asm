@@ -5115,7 +5115,7 @@ UnknownCall_0x2B8B:
 	ld [$A24E], a
 	ld [$2100], a
 	ld bc, $0800
-	ld hl, $4000
+	ld hl, GFX_Mario
 	ld de, $8000
 	call CopyMem
 	ld a, 27 ;prepare bank switch
@@ -7318,7 +7318,7 @@ UnknownCall_0x3F58:
 	ld [$A24E], a
 	ld [$2100], a
 	ld bc, $0800
-	ld hl, $4000
+	ld hl, GFX_Mario
 	ld de, $8000
 	call CopyMem
 	ld a, 15 ;prepare bank switch

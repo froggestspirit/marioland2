@@ -10482,13 +10482,13 @@ INCBIN "baserom.gb", $14121, $18000 - $14121
 SECTION "bank06", ROMX, BANK[$06]
 
 
-GFX_Mario:
+GFX_Mario: ;$18000
 INCBIN "gfx/mario.2bpp"
 
-GFX_MarioDark:
+GFX_MarioDark: ;$18800
 INCBIN "gfx/mariodark.2bpp"
 
-GFX_MarioMoon:
+GFX_MarioMoon: ;$19000
 INCBIN "gfx/mariomoon.2bpp"
 
 INCBIN "gfx/common/goomba.2bpp"
