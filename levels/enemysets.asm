@@ -16,29 +16,29 @@ LevelEnemySets: ;$362A
 	db $00
 	dw GFX_EnemiesTreeZone3
 	
-	db $1C
+	db BANK(GFX_EnemiesMacroZone2)
 	db $00
-	dw $6180
+	dw GFX_EnemiesMacroZone2
 	
 	db BANK(GFX_EnemiesTreeZone4)
 	db $00
 	dw GFX_EnemiesTreeZone4
 	
-	db $1F
+	db BANK(GFX_EnemiesPumpkinZone1)
 	db $00
-	dw $5E00
+	dw GFX_EnemiesPumpkinZone1
 	
-	db $1F
+	db BANK(GFX_EnemiesPumpkinZone2)
 	db $00
-	dw $6180
+	dw GFX_EnemiesPumpkinZone2
 	
-	db $1F
+	db BANK(GFX_EnemiesPumpkinZone3)
 	db $00
-	dw $6500
+	dw GFX_EnemiesPumpkinZone3
 	
-	db $1F
+	db BANK(GFX_EnemiesPumpkinZone4)
 	db $00
-	dw $6880
+	dw GFX_EnemiesPumpkinZone4
 	
 	db BANK(GFX_EnemiesMarioZone1)
 	db $00
@@ -56,53 +56,49 @@ LevelEnemySets: ;$362A
 	db $00
 	dw GFX_EnemiesMarioZone4
 	
-	db $1D
+	db BANK(GFX_EnemiesTurtleZone1)
 	db $00
-	dw $5800
+	dw GFX_EnemiesTurtleZone1
 	
-	db $1D
+	db BANK(GFX_EnemiesTurtleZone2)
 	db $00
-	dw $5B80
+	dw GFX_EnemiesTurtleZone2
 	
-	db $1D
+	db BANK(GFX_EnemiesTurtleZone3)
 	db $00
-	dw $5F00
+	dw GFX_EnemiesTurtleZone3
 	
-	db $1E
+	db BANK(GFX_EnemiesHippoLevel)
 	db $00
-	dw $5A00
+	dw GFX_EnemiesHippoLevel
 	
-	db $1E
+	db BANK(GFX_EnemiesSpaceZone1)
 	db $00
-	dw $5D80
+	dw GFX_EnemiesSpaceZone1
 	
-	db $1E
+	db BANK(GFX_EnemiesSpaceZone2)
 	db $00
-	dw $6100
+	dw GFX_EnemiesSpaceZone2
 	
-	db $1C
+	db BANK(GFX_EnemiesMacroZone1)
 	db $00
-	dw $5E00
+	dw GFX_EnemiesMacroZone1
 	
-	db $1C
+	db BANK(GFX_EnemiesMacroZone2)
 	db $00
-	dw $6180
+	dw GFX_EnemiesMacroZone2
 	
-	db $1C
+	db BANK(GFX_EnemiesMacroZone3)
 	db $00
-	dw $6500
+	dw GFX_EnemiesMacroZone3
 	
-	db $1C
+	db BANK(GFX_EnemiesMacroZone4)
 	db $00
-	dw $6880
+	dw GFX_EnemiesMacroZone4
 	
-	db $1E
+	db BANK(GFX_EnemiesWarioCastle1)
 	db $00
-	dw $6880
-	
-	db BANK(GFX_EnemiesClassic)
-	db $00
-	dw GFX_EnemiesClassic
+	dw GFX_EnemiesWarioCastle1
 	
 	db BANK(GFX_EnemiesClassic)
 	db $00
@@ -112,9 +108,13 @@ LevelEnemySets: ;$362A
 	db $00
 	dw GFX_EnemiesClassic
 	
-	db $1E
+	db BANK(GFX_EnemiesClassic)
 	db $00
-	dw $5D80
+	dw GFX_EnemiesClassic
+	
+	db BANK(GFX_EnemiesSpaceZone1)
+	db $00
+	dw GFX_EnemiesSpaceZone1
 	
 	db BANK(GFX_EnemiesClassic)
 	db $00

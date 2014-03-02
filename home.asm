@@ -807,7 +807,7 @@ UnknownRJump_0x06C0:
 	ld [$A24E], a
 	ld [$2100], a
 	inc hl
-	ld bc, $0380
+	ld bc, $0380 ;size of enemy sets
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -827,7 +827,7 @@ UnknownRJump_0x06C0:
 	ld [$A24E], a
 	ld [$2100], a
 	inc hl
-	ld bc, $0600
+	ld bc, $0600 ;size of tilesets
 	ld a, [hli]
 	ld e, a
 	ld a, [hl]
@@ -5111,7 +5111,7 @@ UnknownCall_0x2B8B:
 	ld hl, $6A00
 	ld de, $8E80
 	call CopyMem
-	ld a, 6 ;prepare bank switch
+	ld a, BANK(GFX_Mario) ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld bc, $0800
@@ -7316,7 +7316,7 @@ UnknownCall_0x3F44:
 	ret
 
 UnknownCall_0x3F58:
-	ld a, 6 ;prepare bank switch
+	ld a, BANK(GFX_Mario) ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld bc, $0800

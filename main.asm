@@ -10516,8 +10516,28 @@ INCBIN "baserom.gb", $1AD00, $1C000 - $1AD00
 SECTION "bank07", ROMX, BANK[$07]
 
 
-UnknownData_0x1C000:
-INCBIN "baserom.gb", $1C000, $20000 - $1C000
+GFX_TilesetLevel1: ;$1C000
+INCBIN "gfx/tilesets/level1.2bpp"
+
+GFX_TilesetTreeZone1: ;$1C600
+INCBIN "gfx/tilesets/treezone1.2bpp"
+
+GFX_TilesetTreeZone2: ;$1CC00
+INCBIN "gfx/tilesets/treezone2.2bpp"
+
+GFX_TilesetTreeZone3: ;$1D200
+INCBIN "gfx/tilesets/treezone3.2bpp"
+
+GFX_TilesetTreeZone4: ;$1D800
+INCBIN "gfx/tilesets/treezone4.2bpp"
+
+GFX_TilesetTreeZone5: ;$1DE00
+INCBIN "gfx/tilesets/treezone5.2bpp"
+
+GFX_TilesetTreeZoneBoss: ;$1E400
+INCBIN "gfx/tilesets/treezoneboss.2bpp"
+
+INCBIN "baserom.gb", $1EA00, $20000 - $1EA00
 
 
 
@@ -29249,8 +29269,20 @@ INCBIN "baserom.gb", $685E5, $6C000 - $685E5
 SECTION "bank1B", ROMX, BANK[$1B]
 
 
-UnknownData_0x6C000:
-INCBIN "baserom.gb", $6C000, $6DE00 - $6C000
+GFX_TilesetMarioZone1: ;$6C000
+INCBIN "gfx/tilesets/mariozone1.2bpp"
+
+GFX_TilesetMarioZone2: ;$6C600
+INCBIN "gfx/tilesets/mariozone2.2bpp"
+
+GFX_TilesetMarioZone3: ;$6CC00
+INCBIN "gfx/tilesets/mariozone3.2bpp"
+
+GFX_TilesetMarioZone4: ;$6D200
+INCBIN "gfx/tilesets/mariozone4.2bpp"
+
+GFX_TilesetMarioZoneBoss: ;$6D800
+INCBIN "gfx/tilesets/mariozoneboss.2bpp"
 
 GFX_EnemiesMarioZone1: ;$6DE00
 INCBIN "gfx/enemies/mariozone1.2bpp"
@@ -29272,30 +29304,142 @@ INCBIN "baserom.gb", $6EF80, $70000 - $6EF80
 
 SECTION "bank1C", ROMX, BANK[$1C]
 
+GFX_TilesetMacroZone1: ;$70000
+INCBIN "gfx/tilesets/macrozone1.2bpp"
 
-UnknownData_0x70000:
-INCBIN "baserom.gb", $70000, $74000 - $70000
+GFX_TilesetMacroZone2: ;$70600
+INCBIN "gfx/tilesets/macrozone2.2bpp"
 
+GFX_TilesetMacroZone3: ;$70C00
+INCBIN "gfx/tilesets/macrozone3.2bpp"
+
+GFX_TilesetMacroZone4: ;$71200
+INCBIN "gfx/tilesets/macrozone4.2bpp"
+
+GFX_TilesetMacroZoneBoss: ;$71800
+INCBIN "gfx/tilesets/macrozoneboss.2bpp"
+
+GFX_EnemiesMacroZone1: ;$71E00
+INCBIN "gfx/enemies/macrozone1.2bpp"
+
+GFX_EnemiesMacroZone2: ;$72180
+INCBIN "gfx/enemies/macrozone2.2bpp"
+
+GFX_EnemiesMacroZone3: ;$72500
+INCBIN "gfx/enemies/macrozone3.2bpp"
+
+GFX_EnemiesMacroZone4: ;$72880
+INCBIN "gfx/enemies/macrozone4.2bpp"
+
+GFX_EnemiesMacroZoneBoss: ;$72C00
+INCBIN "gfx/enemies/macrozoneboss.2bpp"
+
+INCBIN "baserom.gb", $72F80, $74000 - $72F80
 
 
 SECTION "bank1D", ROMX, BANK[$1D]
 
+GFX_TilesetTurtleZone1: ;$74000
+INCBIN "gfx/tilesets/turtlezone1.2bpp"
 
-UnknownData_0x74000:
-INCBIN "baserom.gb", $74000, $78000 - $74000
+GFX_TilesetTurtleZone2: ;$74600
+INCBIN "gfx/tilesets/turtlezone2.2bpp"
 
+GFX_TilesetTurtleZone3: ;$74C00
+INCBIN "gfx/tilesets/turtlezone3.2bpp"
+
+GFX_TilesetTurtleZoneBoss: ;$75200
+INCBIN "gfx/tilesets/turtlezoneboss.2bpp"
+
+GFX_EnemiesTurtleZone1: ;$75800
+INCBIN "gfx/enemies/turtlezone1.2bpp"
+
+GFX_EnemiesTurtleZone2: ;$75B80
+INCBIN "gfx/enemies/turtlezone2.2bpp"
+
+GFX_EnemiesTurtleZone3: ;$75F00
+INCBIN "gfx/enemies/turtlezone3.2bpp"
+
+GFX_EnemiesTurtleZoneBoss: ;$76280
+INCBIN "gfx/enemies/turtlezoneboss.2bpp"
+
+INCBIN "baserom.gb", $76600, $78000 - $76600
 
 
 SECTION "bank1E", ROMX, BANK[$1E]
 
+GFX_TilesetSpaceZone: ;$78000
+INCBIN "gfx/tilesets/spacezone.2bpp"
 
-UnknownData_0x78000:
-INCBIN "baserom.gb", $78000, $7C000 - $78000
+GFX_TilesetPumpkinZoneBoss2: ;$78600 maybe unused?
+INCBIN "gfx/tilesets/pumpkinzoneboss2.2bpp"
 
+GFX_TilesetWarioCastle: ;$78C00
+INCBIN "gfx/tilesets/wariocastle.2bpp"
 
+GFX_TilesetWarioRoom: ;$79200
+INCBIN "gfx/tilesets/warioroom.2bpp"
+
+INCBIN "baserom.gb", $79800, $79A00 - $79800
+
+GFX_EnemiesHippoLevel: ;$79A00
+INCBIN "gfx/enemies/hippolevel.2bpp"
+
+GFX_EnemiesSpaceZone1: ;$79D80
+INCBIN "gfx/enemies/spacezone1.2bpp"
+
+GFX_EnemiesSpaceZone2: ;$7A100
+INCBIN "gfx/enemies/spacezone2.2bpp"
+
+GFX_EnemiesSpaceZoneBoss: ;$7A480
+INCBIN "gfx/enemies/spacezoneboss.2bpp"
+
+INCBIN "baserom.gb", $7A800, $7A880 - $7A800
+
+GFX_EnemiesWarioCastle1: ;$7A880
+INCBIN "gfx/enemies/wariocastle1.2bpp"
+
+GFX_EnemiesWarioCastle2: ;$7AC00
+INCBIN "gfx/enemies/wariocastle2.2bpp"
+
+GFX_EnemiesWario1: ;$7AF80
+INCBIN "gfx/enemies/wario1.2bpp"
+
+GFX_EnemiesWario2: ;$7B300
+INCBIN "gfx/enemies/wario2.2bpp"
+
+INCBIN "baserom.gb", $7B680, $7C000 - $7B680
 
 SECTION "bank1F", ROMX, BANK[$1F]
 
+GFX_TilesetPumpkinZone1: ;$7C000
+INCBIN "gfx/tilesets/pumpkinzone1.2bpp"
 
-UnknownData_0x7C000:
-INCBIN "baserom.gb", $7C000, $80000 - $7C000
+GFX_TilesetPumpkinZone2: ;$7C600
+INCBIN "gfx/tilesets/pumpkinzone2.2bpp"
+
+GFX_TilesetPumpkinZone3: ;$7CC00
+INCBIN "gfx/tilesets/pumpkinzone3.2bpp"
+
+GFX_TilesetPumpkinZone4: ;$7D200
+INCBIN "gfx/tilesets/pumpkinzone4.2bpp"
+
+GFX_TilesetPumpkinZoneBoss: ;$7D800
+INCBIN "gfx/tilesets/pumpkinzoneboss.2bpp"
+
+GFX_EnemiesPumpkinZone1: ;$7DE00
+INCBIN "gfx/enemies/pumpkinzone1.2bpp"
+
+GFX_EnemiesPumpkinZone2: ;$7E180
+INCBIN "gfx/enemies/pumpkinzone2.2bpp"
+
+GFX_EnemiesPumpkinZone3: ;$7E500
+INCBIN "gfx/enemies/pumpkinzone3.2bpp"
+
+GFX_EnemiesPumpkinZone4: ;$7E880
+INCBIN "gfx/enemies/pumpkinzone4.2bpp"
+
+GFX_EnemiesPumpkinZoneBoss: ;$7EC00
+INCBIN "gfx/enemies/pumpkinzoneboss.2bpp"
+
+INCBIN "baserom.gb", $7EF80, $80000 - $7EF80
