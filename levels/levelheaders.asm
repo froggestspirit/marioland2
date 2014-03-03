@@ -39,7 +39,7 @@ Level_Header_01: ;$560B
 	db $50, $00 ;Camera Starting Y
 	db $00, $58 ;Unknown
 	db $00 ;Level Number
-	db $00, $40 ;Tileset Pointer
+	dw Level_TileMap_01 ;Tileset Mapping Pointer
 	db BANK(Level_01) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -53,7 +53,7 @@ Level_Header_02:
 	db $50, $00 ;Camera Starting Y
 	db $80, $5B ;Unknown
 	db $01 ;Level Number
-	db $00, $42 ;Tileset Pointer
+	dw Level_TileMap_02 ;Tileset Mapping Pointer
 	db BANK(Level_02) ;Level Bank
 	db $14 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -67,7 +67,7 @@ Level_Header_03:
 	db $50, $00 ;Camera Starting Y
 	db $00, $5F ;Unknown
 	db $02 ;Level Number
-	db $00, $44 ;Tileset Pointer
+	dw Level_TileMap_03 ;Tileset Mapping Pointer
 	db BANK(Level_03) ;Level Bank
 	db $11 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
@@ -81,7 +81,7 @@ Level_Header_04:
 	db $50, $00 ;Camera Starting Y
 	db $80, $62 ;Unknown
 	db $03 ;Level Number
-	db $00, $46 ;Tileset Pointer
+	dw Level_TileMap_04 ;Tileset Mapping Pointer
 	db BANK(Level_04) ;Level Bank
 	db $28 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
@@ -95,7 +95,7 @@ Level_Header_05:
 	db $50, $00 ;Camera Starting Y
 	db $00, $5F ;Unknown
 	db $04 ;Level Number
-	db $00, $48 ;Tileset Pointer
+	dw Level_TileMap_05 ;Tileset Mapping Pointer
 	db BANK(Level_05) ;Level Bank
 	db $14 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
@@ -109,7 +109,7 @@ Level_Header_06:
 	db $50, $00 ;Camera Starting Y
 	db $00, $66 ;Unknown
 	db $05 ;Level Number
-	db $00, $4A ;Tileset Pointer
+	dw Level_TileMap_06 ;Tileset Mapping Pointer
 	db BANK(Level_06) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -123,7 +123,7 @@ Level_Header_07:
 	db $50, $00 ;Camera Starting Y
 	db $00, $5E ;Unknown
 	db $06 ;Level Number
-	db $00, $4C ;Tileset Pointer
+	dw Level_TileMap_07 ;Tileset Mapping Pointer
 	db BANK(Level_07) ;Level Bank
 	db $11 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
@@ -137,7 +137,7 @@ Level_Header_08:
 	db $50, $00 ;Camera Starting Y
 	db $80, $61 ;Unknown
 	db $07 ;Level Number
-	db $00, $4E ;Tileset Pointer
+	dw Level_TileMap_08 ;Tileset Mapping Pointer
 	db BANK(Level_08) ;Level Bank
 	db $11 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
@@ -151,7 +151,7 @@ Level_Header_09:
 	db $50, $00 ;Camera Starting Y
 	db $00, $65 ;Unknown
 	db $08 ;Level Number
-	db $00, $50 ;Tileset Pointer
+	dw Level_TileMap_09 ;Tileset Mapping Pointer
 	db BANK(Level_09) ;Level Bank
 	db $1F ;Level Music
 	db $93, $D0, $38 ;Level Palettes
@@ -165,7 +165,7 @@ Level_Header_10:
 	db $50, $00 ;Camera Starting Y
 	db $80, $68 ;Unknown
 	db $09 ;Level Number
-	db $00, $52 ;Tileset Pointer
+	dw Level_TileMap_10 ;Tileset Mapping Pointer
 	db BANK(Level_10) ;Level Bank
 	db $11 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
@@ -179,7 +179,7 @@ Level_Header_11:
 	db $50, $00 ;Camera Starting Y
 	db $00, $5E ;Unknown
 	db $0A ;Level Number
-	db $00, $54 ;Tileset Pointer
+	dw Level_TileMap_11 ;Tileset Mapping Pointer
 	db BANK(Level_11) ;Level Bank
 	db $14 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -193,7 +193,7 @@ Level_Header_12:
 	db $50, $00 ;Camera Starting Y
 	db $80, $61 ;Unknown
 	db $0B ;Level Number
-	db $00, $56 ;Tileset Pointer
+	dw Level_TileMap_12 ;Tileset Mapping Pointer
 	db BANK(Level_12) ;Level Bank
 	db $14 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -207,7 +207,7 @@ Level_Header_13:
 	db $50, $00 ;Camera Starting Y
 	db $00, $65 ;Unknown
 	db $0C ;Level Number
-	db $00, $58 ;Tileset Pointer
+	dw Level_TileMap_13 ;Tileset Mapping Pointer
 	db BANK(Level_13) ;Level Bank
 	db $28 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -221,7 +221,7 @@ Level_Header_14:
 	db $50, $00 ;Camera Starting Y
 	db $80, $68 ;Unknown
 	db $0D ;Level Number
-	db $00, $5A ;Tileset Pointer
+	dw Level_TileMap_14 ;Tileset Mapping Pointer
 	db BANK(Level_14) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -235,7 +235,7 @@ Level_Header_15:
 	db $50, $00 ;Camera Starting Y
 	db $00, $58 ;Unknown
 	db $0E ;Level Number
-	db $00, $5C ;Tileset Pointer
+	dw Level_TileMap_15 ;Tileset Mapping Pointer
 	db BANK(Level_15) ;Level Bank
 	db $17 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -249,7 +249,7 @@ Level_Header_16:
 	db $50, $00 ;Camera Starting Y
 	db $80, $5B ;Unknown
 	db $0F ;Level Number
-	db $00, $5E ;Tileset Pointer
+	dw Level_TileMap_16 ;Tileset Mapping Pointer
 	db BANK(Level_16) ;Level Bank
 	db $28 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
@@ -263,7 +263,7 @@ Level_Header_17:
 	db $50, $00 ;Camera Starting Y
 	db $00, $5F ;Unknown
 	db $10 ;Level Number
-	db $00, $60 ;Tileset Pointer
+	dw Level_TileMap_17 ;Tileset Mapping Pointer
 	db BANK(Level_17) ;Level Bank
 	db $11 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
@@ -277,7 +277,7 @@ Level_Header_18:
 	db $50, $00 ;Camera Starting Y
 	db $00, $5A ;Unknown
 	db $11 ;Level Number
-	db $00, $5C ;Tileset Pointer
+	dw Level_TileMap_15 ;Tileset Mapping Pointer
 	db BANK(Level_18) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -291,7 +291,7 @@ Level_Header_19:
 	db $50, $00 ;Camera Starting Y
 	db $80, $5D ;Unknown
 	db $12 ;Level Number
-	db $00, $62 ;Tileset Pointer
+	dw Level_TileMap_18 ;Tileset Mapping Pointer
 	db BANK(Level_19) ;Level Bank
 	db $13 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
@@ -305,7 +305,7 @@ Level_Header_20:
 	db $60, $00 ;Camera Starting Y
 	db $00, $61 ;Unknown
 	db $13 ;Level Number
-	db $00, $62 ;Tileset Pointer
+	dw Level_TileMap_18 ;Tileset Mapping Pointer
 	db BANK(Level_20) ;Level Bank
 	db $1D ;Level Music
 	db $93, $D0, $38 ;Level Palettes
@@ -319,7 +319,7 @@ Level_Header_21:
 	db $50, $00 ;Camera Starting Y
 	db $00, $5E ;Unknown
 	db $14 ;Level Number
-	db $00, $64 ;Tileset Pointer
+	dw Level_TileMap_19 ;Tileset Mapping Pointer
 	db BANK(Level_21) ;Level Bank
 	db $17 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -333,7 +333,7 @@ Level_Header_22:
 	db $50, $00 ;Camera Starting Y
 	db $80, $61 ;Unknown
 	db $15 ;Level Number
-	db $00, $66 ;Tileset Pointer
+	dw Level_TileMap_20 ;Tileset Mapping Pointer
 	db BANK(Level_22) ;Level Bank
 	db $28 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -347,7 +347,7 @@ Level_Header_23:
 	db $50, $00 ;Camera Starting Y
 	db $00, $65 ;Unknown
 	db $16 ;Level Number
-	db $00, $68 ;Tileset Pointer
+	dw Level_TileMap_21 ;Tileset Mapping Pointer
 	db BANK(Level_23) ;Level Bank
 	db $17 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -361,7 +361,7 @@ Level_Header_24:
 	db $50, $00 ;Camera Starting Y
 	db $80, $68 ;Unknown
 	db $17 ;Level Number
-	db $00, $6A ;Tileset Pointer
+	dw Level_TileMap_22 ;Tileset Mapping Pointer
 	db BANK(Level_24) ;Level Bank
 	db $11 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
@@ -375,7 +375,7 @@ Level_Header_25:
 	db $50, $09 ;Camera Starting Y
 	db $80, $68 ;Unknown
 	db $18 ;Level Number
-	db $00, $6C ;Tileset Pointer
+	dw Level_TileMap_23 ;Tileset Mapping Pointer
 	db BANK(Level_25) ;Level Bank
 	db $0B ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -389,7 +389,7 @@ Level_Header_26:
 	db $61, $00 ;Camera Starting Y
 	db $00, $58 ;Unknown
 	db $19 ;Level Number
-	db $00, $40 ;Tileset Pointer
+	dw Level_TileMap_01 ;Tileset Mapping Pointer
 	db BANK(Level_26) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -403,7 +403,7 @@ Level_Header_27:
 	db $50, $00 ;Camera Starting Y
 	db $00, $58 ;Unknown
 	db $1A ;Level Number
-	db $00, $40 ;Tileset Pointer
+	dw Level_TileMap_01 ;Tileset Mapping Pointer
 	db BANK(Level_27) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -417,7 +417,7 @@ Level_Header_28:
 	db $50, $00 ;Camera Starting Y
 	db $00, $58 ;Unknown
 	db $1B ;Level Number
-	db $00, $42 ;Tileset Pointer
+	dw Level_TileMap_02 ;Tileset Mapping Pointer
 	db BANK(Level_28) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -431,7 +431,7 @@ Level_Header_29:
 	db $50, $00 ;Camera Starting Y
 	db $00, $58 ;Unknown
 	db $1C ;Level Number
-	db $00, $62 ;Tileset Pointer
+	dw Level_TileMap_18 ;Tileset Mapping Pointer
 	db BANK(Level_29) ;Level Bank
 	db $01 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
@@ -445,7 +445,7 @@ Level_Header_30:
 	db $50, $00 ;Camera Starting Y
 	db $80, $5B ;Unknown
 	db $1D ;Level Number
-	db $00, $42 ;Tileset Pointer
+	dw Level_TileMap_02 ;Tileset Mapping Pointer
 	db BANK(Level_30) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -459,7 +459,7 @@ Level_Header_31:
 	db $50, $00 ;Camera Starting Y
 	db $80, $5B ;Unknown
 	db $1E ;Level Number
-	db $00, $4A ;Tileset Pointer
+	dw Level_TileMap_06 ;Tileset Mapping Pointer
 	db BANK(Level_31) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
@@ -473,7 +473,7 @@ Level_Header_32:
 	db $50, $00 ;Camera Starting Y
 	db $80, $5B ;Unknown
 	db $1F ;Level Number
-	db $00, $6E ;Tileset Pointer
+	dw Level_TileMap_24 ;Tileset Mapping Pointer
 	db BANK(Level_32) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes

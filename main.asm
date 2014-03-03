@@ -10543,10 +10543,91 @@ INCBIN "baserom.gb", $1EA00, $20000 - $1EA00
 SECTION "bank08", ROMX, BANK[$08]
 
 
-UnknownData_0x20000:
-INCBIN "baserom.gb", $20000, $24000 - $20000
+Level_TileMap_01: ;$20000
+INCBIN "tilemaps/mappings/01.bin"
 
+Level_TileMap_02: ;$20200
+INCBIN "tilemaps/mappings/02.bin"
 
+Level_TileMap_03: ;$20400
+INCBIN "tilemaps/mappings/03.bin"
+
+Level_TileMap_04: ;$20600
+INCBIN "tilemaps/mappings/04.bin"
+
+Level_TileMap_05: ;$20800
+INCBIN "tilemaps/mappings/05.bin"
+
+Level_TileMap_06: ;$20A00
+INCBIN "tilemaps/mappings/06.bin"
+
+Level_TileMap_07: ;$20C00
+INCBIN "tilemaps/mappings/07.bin"
+
+Level_TileMap_08: ;$20E00
+INCBIN "tilemaps/mappings/08.bin"
+
+Level_TileMap_09: ;$21000
+INCBIN "tilemaps/mappings/09.bin"
+
+Level_TileMap_10: ;$21200
+INCBIN "tilemaps/mappings/10.bin"
+
+Level_TileMap_11: ;$21400
+INCBIN "tilemaps/mappings/11.bin"
+
+Level_TileMap_12: ;$21600
+INCBIN "tilemaps/mappings/12.bin"
+
+Level_TileMap_13: ;$21800
+INCBIN "tilemaps/mappings/13.bin"
+
+Level_TileMap_14: ;$21A00
+INCBIN "tilemaps/mappings/14.bin"
+
+Level_TileMap_15: ;$21C00
+INCBIN "tilemaps/mappings/15.bin"
+
+Level_TileMap_16: ;$21E00
+INCBIN "tilemaps/mappings/16.bin"
+
+Level_TileMap_17: ;$22000
+INCBIN "tilemaps/mappings/17.bin"
+
+Level_TileMap_18: ;$22200
+INCBIN "tilemaps/mappings/18.bin"
+
+Level_TileMap_19: ;$22400
+INCBIN "tilemaps/mappings/19.bin"
+
+Level_TileMap_20: ;$22600
+INCBIN "tilemaps/mappings/20.bin"
+
+Level_TileMap_21: ;$22800
+INCBIN "tilemaps/mappings/21.bin"
+
+Level_TileMap_22: ;$22A00
+INCBIN "tilemaps/mappings/22.bin"
+
+Level_TileMap_23: ;$22C00
+INCBIN "tilemaps/mappings/23.bin"
+
+Level_TileMap_24: ;$22E00
+INCBIN "tilemaps/mappings/24.bin"
+
+Level_TileMap_25: ;$23000
+INCBIN "tilemaps/mappings/25.bin"
+
+Level_TileMap_26: ;$23200
+INCBIN "tilemaps/mappings/26.bin"
+
+Level_TileMap_27: ;$23400
+INCBIN "tilemaps/mappings/27.bin"
+
+Level_TileMap_28: ;$23600
+INCBIN "tilemaps/mappings/28.bin"
+
+INCBIN "baserom.gb", $23800, $24000 - $23800
 
 SECTION "bank09", ROMX, BANK[$09]
 
@@ -11987,9 +12068,17 @@ INCBIN "baserom.gb", $34000, $34800 - $34000
 INCBIN "gfx/overworld/overworld.2bpp"
 INCBIN "baserom.gb", $35800, $36000 - $35800
 INCBIN "gfx/overworld/macrozone.2bpp"
+
+TileMapping_Overworld1x1: ;$37000
 INCBIN "tilemaps/overworld/overworld1x1.bin"
+
+TileMapping_Overworld2x1: ;$37400
 INCBIN "tilemaps/overworld/overworld2x1.bin"
+
+TileMapping_Overworld1x2: ;$37800
 INCBIN "tilemaps/overworld/overworld1x2.bin"
+
+TileMapping_Overworld2x2: ;$37C00
 INCBIN "tilemaps/overworld/overworld2x2.bin"
 
 
