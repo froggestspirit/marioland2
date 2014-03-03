@@ -40,7 +40,7 @@ Level_Header_01: ;$560B
 	db $00, $58 ;Unknown
 	db $00 ;Level Number
 	db $00, $40 ;Tileset Pointer
-	db $09 ;Level Bank
+	db BANK(Level_01) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $00 ;Level number (in it's bank)
@@ -54,7 +54,7 @@ Level_Header_02:
 	db $80, $5B ;Unknown
 	db $01 ;Level Number
 	db $00, $42 ;Tileset Pointer
-	db $0A ;Level Bank
+	db BANK(Level_02) ;Level Bank
 	db $14 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $00 ;Level number (in it's bank)
@@ -68,7 +68,7 @@ Level_Header_03:
 	db $00, $5F ;Unknown
 	db $02 ;Level Number
 	db $00, $44 ;Tileset Pointer
-	db $0A ;Level Bank
+	db BANK(Level_03) ;Level Bank
 	db $11 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
 	db $01 ;Level number (in it's bank)
@@ -82,7 +82,7 @@ Level_Header_04:
 	db $80, $62 ;Unknown
 	db $03 ;Level Number
 	db $00, $46 ;Tileset Pointer
-	db $0A ;Level Bank
+	db BANK(Level_04) ;Level Bank
 	db $28 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
 	db $02 ;Level number (in it's bank)
@@ -96,7 +96,7 @@ Level_Header_05:
 	db $00, $5F ;Unknown
 	db $04 ;Level Number
 	db $00, $48 ;Tileset Pointer
-	db $0B ;Level Bank
+	db BANK(Level_05) ;Level Bank
 	db $14 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
 	db $00 ;Level number (in it's bank)
@@ -110,7 +110,7 @@ Level_Header_06:
 	db $00, $66 ;Unknown
 	db $05 ;Level Number
 	db $00, $4A ;Tileset Pointer
-	db $0B ;Level Bank
+	db BANK(Level_06) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $01 ;Level number (in it's bank)
@@ -124,7 +124,7 @@ Level_Header_07:
 	db $00, $5E ;Unknown
 	db $06 ;Level Number
 	db $00, $4C ;Tileset Pointer
-	db $12 ;Level Bank
+	db BANK(Level_07) ;Level Bank
 	db $11 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
 	db $00 ;Level number (in it's bank)
@@ -138,7 +138,7 @@ Level_Header_08:
 	db $80, $61 ;Unknown
 	db $07 ;Level Number
 	db $00, $4E ;Tileset Pointer
-	db $12 ;Level Bank
+	db BANK(Level_08) ;Level Bank
 	db $11 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
 	db $01 ;Level number (in it's bank)
@@ -152,7 +152,7 @@ Level_Header_09:
 	db $00, $65 ;Unknown
 	db $08 ;Level Number
 	db $00, $50 ;Tileset Pointer
-	db $12 ;Level Bank
+	db BANK(Level_09) ;Level Bank
 	db $1F ;Level Music
 	db $93, $D0, $38 ;Level Palettes
 	db $02 ;Level number (in it's bank)
@@ -166,7 +166,7 @@ Level_Header_10:
 	db $80, $68 ;Unknown
 	db $09 ;Level Number
 	db $00, $52 ;Tileset Pointer
-	db $12 ;Level Bank
+	db BANK(Level_10) ;Level Bank
 	db $11 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
 	db $03 ;Level number (in it's bank)
@@ -180,7 +180,7 @@ Level_Header_11:
 	db $00, $5E ;Unknown
 	db $0A ;Level Number
 	db $00, $54 ;Tileset Pointer
-	db $17 ;Level Bank
+	db BANK(Level_11) ;Level Bank
 	db $14 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $00 ;Level number (in it's bank)
@@ -194,7 +194,7 @@ Level_Header_12:
 	db $80, $61 ;Unknown
 	db $0B ;Level Number
 	db $00, $56 ;Tileset Pointer
-	db $17 ;Level Bank
+	db BANK(Level_12) ;Level Bank
 	db $14 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $01 ;Level number (in it's bank)
@@ -208,7 +208,7 @@ Level_Header_13:
 	db $00, $65 ;Unknown
 	db $0C ;Level Number
 	db $00, $58 ;Tileset Pointer
-	db $17 ;Level Bank
+	db BANK(Level_13) ;Level Bank
 	db $28 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $02 ;Level number (in it's bank)
@@ -222,7 +222,7 @@ Level_Header_14:
 	db $80, $68 ;Unknown
 	db $0D ;Level Number
 	db $00, $5A ;Tileset Pointer
-	db $17 ;Level Bank
+	db BANK(Level_14) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $03 ;Level number (in it's bank)
@@ -236,7 +236,7 @@ Level_Header_15:
 	db $00, $58 ;Unknown
 	db $0E ;Level Number
 	db $00, $5C ;Tileset Pointer
-	db $14 ;Level Bank
+	db BANK(Level_15) ;Level Bank
 	db $17 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $00 ;Level number (in it's bank)
@@ -250,7 +250,7 @@ Level_Header_16:
 	db $80, $5B ;Unknown
 	db $0F ;Level Number
 	db $00, $5E ;Tileset Pointer
-	db $14 ;Level Bank
+	db BANK(Level_16) ;Level Bank
 	db $28 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
 	db $01 ;Level number (in it's bank)
@@ -264,7 +264,7 @@ Level_Header_17:
 	db $00, $5F ;Unknown
 	db $10 ;Level Number
 	db $00, $60 ;Tileset Pointer
-	db $14 ;Level Bank
+	db BANK(Level_17) ;Level Bank
 	db $11 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
 	db $02 ;Level number (in it's bank)
@@ -278,7 +278,7 @@ Level_Header_18:
 	db $00, $5A ;Unknown
 	db $11 ;Level Number
 	db $00, $5C ;Tileset Pointer
-	db $13 ;Level Bank
+	db BANK(Level_18) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $00 ;Level number (in it's bank)
@@ -292,7 +292,7 @@ Level_Header_19:
 	db $80, $5D ;Unknown
 	db $12 ;Level Number
 	db $00, $62 ;Tileset Pointer
-	db $13 ;Level Bank
+	db BANK(Level_19) ;Level Bank
 	db $13 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
 	db $01 ;Level number (in it's bank)
@@ -306,7 +306,7 @@ Level_Header_20:
 	db $00, $61 ;Unknown
 	db $13 ;Level Number
 	db $00, $62 ;Tileset Pointer
-	db $13 ;Level Bank
+	db BANK(Level_20) ;Level Bank
 	db $1D ;Level Music
 	db $93, $D0, $38 ;Level Palettes
 	db $02 ;Level number (in it's bank)
@@ -320,7 +320,7 @@ Level_Header_21:
 	db $00, $5E ;Unknown
 	db $14 ;Level Number
 	db $00, $64 ;Tileset Pointer
-	db $15 ;Level Bank
+	db BANK(Level_21) ;Level Bank
 	db $17 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $00 ;Level number (in it's bank)
@@ -334,7 +334,7 @@ Level_Header_22:
 	db $80, $61 ;Unknown
 	db $15 ;Level Number
 	db $00, $66 ;Tileset Pointer
-	db $15 ;Level Bank
+	db BANK(Level_22) ;Level Bank
 	db $28 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $01 ;Level number (in it's bank)
@@ -348,7 +348,7 @@ Level_Header_23:
 	db $00, $65 ;Unknown
 	db $16 ;Level Number
 	db $00, $68 ;Tileset Pointer
-	db $15 ;Level Bank
+	db BANK(Level_23) ;Level Bank
 	db $17 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $02 ;Level number (in it's bank)
@@ -362,7 +362,7 @@ Level_Header_24:
 	db $80, $68 ;Unknown
 	db $17 ;Level Number
 	db $00, $6A ;Tileset Pointer
-	db $15 ;Level Bank
+	db BANK(Level_24) ;Level Bank
 	db $11 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
 	db $03 ;Level number (in it's bank)
@@ -376,7 +376,7 @@ Level_Header_25:
 	db $80, $68 ;Unknown
 	db $18 ;Level Number
 	db $00, $6C ;Tileset Pointer
-	db $13 ;Level Bank
+	db BANK(Level_25) ;Level Bank
 	db $0B ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $03 ;Level number (in it's bank)
@@ -390,7 +390,7 @@ Level_Header_26:
 	db $00, $58 ;Unknown
 	db $19 ;Level Number
 	db $00, $40 ;Tileset Pointer
-	db $09 ;Level Bank
+	db BANK(Level_26) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $01 ;Level number (in it's bank)
@@ -404,7 +404,7 @@ Level_Header_27:
 	db $00, $58 ;Unknown
 	db $1A ;Level Number
 	db $00, $40 ;Tileset Pointer
-	db $09 ;Level Bank
+	db BANK(Level_27) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $02 ;Level number (in it's bank)
@@ -418,7 +418,7 @@ Level_Header_28:
 	db $00, $58 ;Unknown
 	db $1B ;Level Number
 	db $00, $42 ;Tileset Pointer
-	db $09 ;Level Bank
+	db BANK(Level_28) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $03 ;Level number (in it's bank)
@@ -432,7 +432,7 @@ Level_Header_29:
 	db $00, $58 ;Unknown
 	db $1C ;Level Number
 	db $00, $62 ;Tileset Pointer
-	db $0B ;Level Bank
+	db BANK(Level_29) ;Level Bank
 	db $01 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
 	db $04 ;Level number (in it's bank)
@@ -446,7 +446,7 @@ Level_Header_30:
 	db $80, $5B ;Unknown
 	db $1D ;Level Number
 	db $00, $42 ;Tileset Pointer
-	db $0B ;Level Bank
+	db BANK(Level_30) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $03 ;Level number (in it's bank)
@@ -460,7 +460,7 @@ Level_Header_31:
 	db $80, $5B ;Unknown
 	db $1E ;Level Number
 	db $00, $4A ;Tileset Pointer
-	db $0B ;Level Bank
+	db BANK(Level_31) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $02 ;Level number (in it's bank)
@@ -474,7 +474,7 @@ Level_Header_32:
 	db $80, $5B ;Unknown
 	db $1F ;Level Number
 	db $00, $6E ;Tileset Pointer
-	db $0B ;Level Bank
+	db BANK(Level_32) ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
 	db $05 ;Level number (in it's bank)
