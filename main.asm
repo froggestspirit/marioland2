@@ -509,7 +509,7 @@ UnknownJump_0x5579:
 	ld [$A2A0], a
 
 UnknownRJump_0x5589:
-	ld hl, $55CB
+	ld hl, Level_Header_Pointers
 	ld a, [sCurLevel]
 	ld e, a
 	ld d, 0
@@ -557,8 +557,7 @@ UnknownRJump_0x55C6:
 	ret
 
 UnknownData_0x55CB:
-INCBIN "baserom.gb", $55CB, $560B - $55CB
-include "levels/levelheaders.asm"
+INCLUDE "levels/levelheaders.asm"
 INCBIN "baserom.gb", $588B, $591F - $588B
 
 UnknownJump_0x591F:
@@ -10553,15 +10552,52 @@ SECTION "bank09", ROMX, BANK[$09]
 
 
 UnknownData_0x24000:
-INCBIN "baserom.gb", $24000, $28000 - $24000
+INCBIN "baserom.gb", $24000, $242F0 - $24000
+;$242F0 Pointers to levels 
+	dw Level_01
+	dw Level_26
+	dw Level_27
+	dw Level_28
+	
+INCBIN "baserom.gb", $242F8, $24500 - $242F8
 
+Level_01: ;$24500
+INCBIN "levels/level01.bin"
+
+Level_26: ;$24E5B
+INCBIN "levels/level26.bin"
+
+Level_27: ;$25105
+INCBIN "levels/level27.bin"
+
+Level_28: ;$25526
+INCBIN "levels/level28.bin"
+
+INCBIN "baserom.gb", $25CF7, $28000 - $25CF7
 
 
 SECTION "bank0A", ROMX, BANK[$0A]
 
 
 UnknownData_0x28000:
-INCBIN "baserom.gb", $28000, $2C000 - $28000
+INCBIN "baserom.gb", $28000, $282F0 - $28000
+;$282F0 Pointers to levels 
+	dw Level_02
+	dw Level_03
+	dw Level_04
+	
+INCBIN "baserom.gb", $282F6, $28500 - $282F6
+
+Level_02: ;$28500
+INCBIN "levels/level02.bin"
+
+Level_03: ;$2919B
+INCBIN "levels/level03.bin"
+
+Level_04: ;$2AA87
+INCBIN "levels/level04.bin"
+
+INCBIN "baserom.gb", $2B215, $2C000 - $2B215
 
 
 
@@ -10569,9 +10605,36 @@ SECTION "bank0B", ROMX, BANK[$0B]
 
 
 UnknownData_0x2C000:
-INCBIN "baserom.gb", $2C000, $30000 - $2C000
+INCBIN "baserom.gb", $2C000, $2C2F0 - $2C000
+;$2C2F0 Pointers to levels 
+	dw Level_05
+	dw Level_06
+	dw Level_31
+	dw Level_30
+	dw Level_29
+	dw Level_32
+	
+INCBIN "baserom.gb", $2C2FC, $2C500 - $2C2FC
 
+Level_05: ;$2C500
+INCBIN "levels/level05.bin"
 
+Level_06: ;$2CCA7
+INCBIN "levels/level06.bin"
+
+Level_31: ;$2D192
+INCBIN "levels/level31.bin"
+
+Level_30: ;$2D40B
+INCBIN "levels/level30.bin"
+
+Level_29: ;$2D8D7
+INCBIN "levels/level29.bin"
+
+Level_32: ;$2E0F5
+INCBIN "levels/level32.bin"
+
+INCBIN "baserom.gb", $2E6AA, $30000 - $2E6AA
 
 SECTION "bank0C", ROMX, BANK[$0C]
 
@@ -18549,31 +18612,105 @@ SECTION "bank12", ROMX, BANK[$12]
 
 
 UnknownData_0x48000:
-INCBIN "baserom.gb", $48000, $4C000 - $48000
+INCBIN "baserom.gb", $48000, $482F0 - $48000
+;$482F0 Pointers to levels 
+	dw Level_07
+	dw Level_08
+	dw Level_09
+	dw Level_10
+	
+INCBIN "baserom.gb", $482F8, $48500 - $482F8
 
+Level_07: ;$48500
+INCBIN "levels/level07.bin"
 
+Level_08: ;$48E29
+INCBIN "levels/level08.bin"
+
+Level_09: ;$494D9
+INCBIN "levels/level09.bin"
+
+Level_10: ;$49FF2
+INCBIN "levels/level10.bin"
+
+INCBIN "baserom.gb", $4A948, $4C000 - $4A948
 
 SECTION "bank13", ROMX, BANK[$13]
 
 
 UnknownData_0x4C000:
-INCBIN "baserom.gb", $4C000, $50000 - $4C000
+INCBIN "baserom.gb", $4C000, $4C2F0 - $4C000
+;$4C2F0 Pointers to levels 
+	dw Level_18
+	dw Level_19
+	dw Level_20
+	dw Level_25
+	
+INCBIN "baserom.gb", $4C2F8, $4C500 - $4C2F8
 
+Level_18: ;$4C500
+INCBIN "levels/level18.bin"
 
+Level_19: ;$4CE19
+INCBIN "levels/level19.bin"
+
+Level_20: ;$4DAFF
+INCBIN "levels/level20.bin"
+
+Level_25: ;$4E33A
+INCBIN "levels/level25.bin"
+
+INCBIN "baserom.gb", $4FEAF, $50000 - $4FEAF
 
 SECTION "bank14", ROMX, BANK[$14]
 
 
 UnknownData_0x50000:
-INCBIN "baserom.gb", $50000, $54000 - $50000
+INCBIN "baserom.gb", $50000, $502F0 - $50000
+;$502F0 Pointers to levels 
+	dw Level_15
+	dw Level_16
+	dw Level_17
+	
+INCBIN "baserom.gb", $502F6, $50500 - $502F6
 
+Level_15: ;$50500
+INCBIN "levels/level15.bin"
 
+Level_16: ;$50AB4
+INCBIN "levels/level16.bin"
+
+Level_17: ;$51EC9
+INCBIN "levels/level17.bin"
+
+INCBIN "baserom.gb", $52341, $54000 - $52341
 
 SECTION "bank15", ROMX, BANK[$15]
 
 
 UnknownData_0x54000:
-INCBIN "baserom.gb", $54000, $58000 - $54000
+INCBIN "baserom.gb", $54000, $542F0 - $54000
+;$542F0 Pointers to levels 
+	dw Level_21
+	dw Level_22
+	dw Level_23
+	dw Level_24
+	
+INCBIN "baserom.gb", $542F8, $54500 - $542F8
+
+Level_21: ;$54500
+INCBIN "levels/level21.bin"
+
+Level_22: ;$54B41
+INCBIN "levels/level22.bin"
+
+Level_23: ;$55242
+INCBIN "levels/level23.bin"
+
+Level_24: ;$55C4C
+INCBIN "levels/level24.bin"
+
+INCBIN "baserom.gb", $562DE, $58000 - $562DE
 
 
 
@@ -26122,7 +26259,28 @@ SECTION "bank17", ROMX, BANK[$17]
 
 
 UnknownData_0x5C000:
-INCBIN "baserom.gb", $5C000, $60000 - $5C000
+INCBIN "baserom.gb", $5C000, $5C2F0 - $5C000
+;$5C2F0 Pointers to levels 
+	dw Level_11
+	dw Level_12
+	dw Level_13
+	dw Level_14
+	
+INCBIN "baserom.gb", $5C2F8, $5C500 - $5C2F8
+
+Level_11: ;$5C500
+INCBIN "levels/level11.bin"
+
+Level_12: ;$5CE21
+INCBIN "levels/level12.bin"
+
+Level_13: ;$5D980
+INCBIN "levels/level13.bin"
+
+Level_14: ;$5E4F4
+INCBIN "levels/level14.bin"
+
+INCBIN "baserom.gb", $5F81A, $60000 - $5F81A
 
 
 

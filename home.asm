@@ -95,7 +95,7 @@ UnknownRJump_0x018B:
 	ld a, [$AA01]
 	and a
 	jr z, UnknownRJump_0x01BF
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$2100], a
 	call ScrollLevelMap
 	jr UnknownRJump_0x01C5
@@ -335,51 +335,51 @@ UnknownCall_0x0361:
 	ld d, a
 	ld hl, $0000
 	ld a, 10
-	ld [hl], a
+	ld [hl], a ;enable SRAM
 	ld h, 64
 	ld a, 0
-	ld [hl], a
+	ld [hl], a ;Ram Bank 0
 	ld h, 96
 	ld a, 1
-	ld [hl], a
+	ld [hl], a ;Ram Banking mode
 	ld hl, $B000
 
-UnknownRJump_0x0386:
+Read_Level_Data: ;$0386
 	ld a, [de]
 	inc de
 	bit 7, a
-	jr nz, UnknownRJump_0x0393
+	jr nz, .compressed
 	ld [hli], a
 	ld a, l
 	or a
-	jr z, UnknownRJump_0x03A9
-	jr UnknownRJump_0x0386
+	jr z, .checkRAMbounds
+	jr Read_Level_Data
 
-UnknownRJump_0x0393:
+.compressed
 	and $7F
 	ld [hli], a
 	ld c, a
 	ld a, l
 	or a
-	jr z, UnknownRJump_0x03A9
+	jr z, .checkRAMbounds
 	ld a, [de]
 	inc de
 	ld b, a
 
-UnknownRJump_0x039E:
+.decompress
 	ld [hl], c
 	inc hl
 	ld a, l
 	or a
-	jr z, UnknownRJump_0x03A9
+	jr z, .checkRAMbounds
 	dec b
-	jr nz, UnknownRJump_0x039E
-	jr UnknownRJump_0x0386
+	jr nz, .decompress
+	jr Read_Level_Data
 
-UnknownRJump_0x03A9:
+.checkRAMbounds
 	ld a, h
 	cp $E0
-	jr nz, UnknownRJump_0x0386
+	jr nz, Read_Level_Data
 	ret
 	ld a, [$A266]
 	and $C0
@@ -497,7 +497,7 @@ UnknownRJump_0x0472:
 	ld a, [$A80E]
 	ld [$A292], a
 	ld a, [$A80D]
-	ld [$A258], a
+	ld [sLevelBank], a
 	ld a, [$A812]
 	and $F0
 	ld [$A28B], a
@@ -551,7 +551,7 @@ UnknownRJump_0x04DD:
 	ret
 	call DisableVBlank
 	call LoadMarioGFX
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	call UnknownCall_0x0361
@@ -917,7 +917,7 @@ INCBIN "baserom.gb", $07EA, $0879 - $07EA
 
 
 UnknownCall_0x0879:
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4121,7 +4121,7 @@ INCBIN "baserom.gb", $2357, $2359 - $2357
 
 
 UnknownRJump_0x2359:
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4146,7 +4146,7 @@ UnknownRJump_0x2359:
 	ld [$FF00+$CD], a
 	call UnknownCall_0x0A35
 	call UnknownCall_0x2728
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4164,7 +4164,7 @@ UnknownRJump_0x2359:
 	ld [$FF00+$CF], a
 	call UnknownCall_0x0A35
 	call UnknownCall_0x2728
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4185,7 +4185,7 @@ UnknownRJump_0x2359:
 	ret
 
 UnknownJump_0x23E4:
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4210,7 +4210,7 @@ UnknownJump_0x23E4:
 	ld [$FF00+$CD], a
 	call UnknownCall_0x0A35
 	call UnknownCall_0x2728
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4228,7 +4228,7 @@ UnknownJump_0x23E4:
 	ld [$FF00+$CF], a
 	call UnknownCall_0x0A35
 	call UnknownCall_0x2728
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4249,7 +4249,7 @@ UnknownJump_0x23E4:
 	ret
 
 UnknownJump_0x246F:
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4274,7 +4274,7 @@ UnknownJump_0x246F:
 	ld [$FF00+$CD], a
 	call UnknownCall_0x0969
 	call UnknownCall_0x2728
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4292,7 +4292,7 @@ UnknownJump_0x246F:
 	ld [$FF00+$CD], a
 	call UnknownCall_0x0969
 	call UnknownCall_0x2728
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4310,7 +4310,7 @@ UnknownJump_0x246F:
 	ld [$FF00+$CD], a
 	call UnknownCall_0x0969
 	call UnknownCall_0x2728
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4331,7 +4331,7 @@ UnknownJump_0x246F:
 	ret
 
 UnknownJump_0x2524:
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4356,7 +4356,7 @@ UnknownJump_0x2524:
 	ld [$FF00+$CD], a
 	call UnknownCall_0x0969
 	call UnknownCall_0x2728
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4374,7 +4374,7 @@ UnknownJump_0x2524:
 	ld [$FF00+$CD], a
 	call UnknownCall_0x0969
 	call UnknownCall_0x2728
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, 0
@@ -4401,7 +4401,7 @@ UnknownCall_0x25AF:
 	push hl
 	call DisableVBlank
 	ld a, 19 ;prepare bank switch
-	ld [$A258], a
+	ld [sLevelBank], a
 	ld [$2100], a
 	ld a, 3
 	ld [$A812], a
@@ -4518,7 +4518,7 @@ UnknownJump_0x26C3:
 	ld a, [$AA01]
 	and a
 	jr z, UnknownRJump_0x2712
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	call ScrollLevelMap
@@ -5774,7 +5774,7 @@ UnknownRJump_0x3098:
 	ld a, [sMarioScreenY]
 	cp $20
 	ret c
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, [$FF00+$C9]
@@ -5811,7 +5811,7 @@ UnknownRJump_0x30D9:
 	ld a, [sMarioScreenY]
 	cp $70
 	ret nc
-	ld a, [$A258] ;prepare bank switch
+	ld a, [sLevelBank] ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld a, [$FF00+$C9]

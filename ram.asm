@@ -13,6 +13,7 @@ sMarioScreenY = $A23B
 sMarioScreenX = $A23C
 sTimerLow = $A254
 sTimerHigh = $A255
+sLevelBank = $A258
 sCoinLow = $A262
 sCoinHigh = $A263
 sSpinJump = $A268

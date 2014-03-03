@@ -1,3 +1,37 @@
+Level_Header_Pointers: ;$55CB
+	dw Level_Header_01
+	dw Level_Header_02
+	dw Level_Header_03
+	dw Level_Header_04
+	dw Level_Header_05
+	dw Level_Header_06
+	dw Level_Header_07
+	dw Level_Header_08
+	dw Level_Header_09
+	dw Level_Header_10
+	dw Level_Header_11
+	dw Level_Header_12
+	dw Level_Header_13
+	dw Level_Header_14
+	dw Level_Header_15
+	dw Level_Header_16
+	dw Level_Header_17
+	dw Level_Header_18
+	dw Level_Header_19
+	dw Level_Header_20
+	dw Level_Header_21
+	dw Level_Header_22
+	dw Level_Header_23
+	dw Level_Header_24
+	dw Level_Header_25
+	dw Level_Header_26
+	dw Level_Header_27
+	dw Level_Header_28
+	dw Level_Header_29
+	dw Level_Header_30
+	dw Level_Header_31
+	dw Level_Header_32
+
 Level_Header_01: ;$560B
 	db $D4, $01 ;Mario Starting X
 	db $22, $00 ;Mario Starting Y
@@ -9,7 +43,7 @@ Level_Header_01: ;$560B
 	db $09 ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $00 ;Second Exit?
+	db $00 ;Level number (in it's bank)
 	db $04 ;Time (multiply by 0x64 to get time in decimal)
 
 Level_Header_02:
@@ -23,7 +57,7 @@ Level_Header_02:
 	db $0A ;Level Bank
 	db $14 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $00 ;Second Exit?
+	db $00 ;Level number (in it's bank)
 	db $05 ;Time
 
 Level_Header_03:
@@ -37,7 +71,7 @@ Level_Header_03:
 	db $0A ;Level Bank
 	db $11 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
-	db $01 ;Second Exit?
+	db $01 ;Level number (in it's bank)
 	db $06 ;Time
 
 Level_Header_04:
@@ -51,7 +85,7 @@ Level_Header_04:
 	db $0A ;Level Bank
 	db $28 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
-	db $02 ;Second Exit?
+	db $02 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_05:
@@ -65,7 +99,7 @@ Level_Header_05:
 	db $0B ;Level Bank
 	db $14 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
-	db $00 ;Second Exit?
+	db $00 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_06:
@@ -79,7 +113,7 @@ Level_Header_06:
 	db $0B ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $01 ;Second Exit?
+	db $01 ;Level number (in it's bank)
 	db $05 ;Time
 
 Level_Header_07:
@@ -93,7 +127,7 @@ Level_Header_07:
 	db $12 ;Level Bank
 	db $11 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
-	db $00 ;Second Exit?
+	db $00 ;Level number (in it's bank)
 	db $05 ;Time
 
 Level_Header_08:
@@ -107,7 +141,7 @@ Level_Header_08:
 	db $12 ;Level Bank
 	db $11 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
-	db $01 ;Second Exit?
+	db $01 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_09:
@@ -121,7 +155,7 @@ Level_Header_09:
 	db $12 ;Level Bank
 	db $1F ;Level Music
 	db $93, $D0, $38 ;Level Palettes
-	db $02 ;Second Exit?
+	db $02 ;Level number (in it's bank)
 	db $05 ;Time
 
 Level_Header_10:
@@ -135,7 +169,7 @@ Level_Header_10:
 	db $12 ;Level Bank
 	db $11 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
-	db $03 ;Second Exit?
+	db $03 ;Level number (in it's bank)
 	db $05 ;Time
 
 Level_Header_11:
@@ -149,7 +183,7 @@ Level_Header_11:
 	db $17 ;Level Bank
 	db $14 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $00 ;Second Exit?
+	db $00 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_12:
@@ -163,7 +197,7 @@ Level_Header_12:
 	db $17 ;Level Bank
 	db $14 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $01 ;Second Exit?
+	db $01 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_13:
@@ -177,7 +211,7 @@ Level_Header_13:
 	db $17 ;Level Bank
 	db $28 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $02 ;Second Exit?
+	db $02 ;Level number (in it's bank)
 	db $05 ;Time
 
 Level_Header_14:
@@ -191,7 +225,7 @@ Level_Header_14:
 	db $17 ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $03 ;Second Exit?
+	db $03 ;Level number (in it's bank)
 	db $03 ;Time
 
 Level_Header_15:
@@ -205,7 +239,7 @@ Level_Header_15:
 	db $14 ;Level Bank
 	db $17 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $00 ;Second Exit?
+	db $00 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_16:
@@ -219,7 +253,7 @@ Level_Header_16:
 	db $14 ;Level Bank
 	db $28 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
-	db $01 ;Second Exit?
+	db $01 ;Level number (in it's bank)
 	db $06 ;Time
 
 Level_Header_17:
@@ -233,7 +267,7 @@ Level_Header_17:
 	db $14 ;Level Bank
 	db $11 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
-	db $02 ;Second Exit?
+	db $02 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_18:
@@ -247,7 +281,7 @@ Level_Header_18:
 	db $13 ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $00 ;Second Exit?
+	db $00 ;Level number (in it's bank)
 	db $07 ;Time
 
 Level_Header_19:
@@ -261,7 +295,7 @@ Level_Header_19:
 	db $13 ;Level Bank
 	db $13 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
-	db $01 ;Second Exit?
+	db $01 ;Level number (in it's bank)
 	db $07 ;Time
 
 Level_Header_20:
@@ -275,7 +309,7 @@ Level_Header_20:
 	db $13 ;Level Bank
 	db $1D ;Level Music
 	db $93, $D0, $38 ;Level Palettes
-	db $02 ;Second Exit?
+	db $02 ;Level number (in it's bank)
 	db $06 ;Time
 
 Level_Header_21:
@@ -289,7 +323,7 @@ Level_Header_21:
 	db $15 ;Level Bank
 	db $17 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $00 ;Second Exit?
+	db $00 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_22:
@@ -303,7 +337,7 @@ Level_Header_22:
 	db $15 ;Level Bank
 	db $28 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $01 ;Second Exit?
+	db $01 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_23:
@@ -317,7 +351,7 @@ Level_Header_23:
 	db $15 ;Level Bank
 	db $17 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $02 ;Second Exit?
+	db $02 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_24:
@@ -331,7 +365,7 @@ Level_Header_24:
 	db $15 ;Level Bank
 	db $11 ;Level Music
 	db $E1, $D0, $38 ;Level Palettes
-	db $03 ;Second Exit?
+	db $03 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_25:
@@ -345,7 +379,7 @@ Level_Header_25:
 	db $13 ;Level Bank
 	db $0B ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $03 ;Second Exit?
+	db $03 ;Level number (in it's bank)
 	db $09 ;Time
 
 Level_Header_26:
@@ -359,7 +393,7 @@ Level_Header_26:
 	db $09 ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $01 ;Second Exit?
+	db $01 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_27:
@@ -373,7 +407,7 @@ Level_Header_27:
 	db $09 ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $02 ;Second Exit?
+	db $02 ;Level number (in it's bank)
 	db $02 ;Time
 
 Level_Header_28:
@@ -387,7 +421,7 @@ Level_Header_28:
 	db $09 ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $03 ;Second Exit?
+	db $03 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_29:
@@ -401,7 +435,7 @@ Level_Header_29:
 	db $0B ;Level Bank
 	db $01 ;Level Music
 	db $93, $D0, $38 ;Level Palettes
-	db $04 ;Second Exit?
+	db $04 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_30:
@@ -415,7 +449,7 @@ Level_Header_30:
 	db $0B ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $03 ;Second Exit?
+	db $03 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_31:
@@ -429,7 +463,7 @@ Level_Header_31:
 	db $0B ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $02 ;Second Exit?
+	db $02 ;Level number (in it's bank)
 	db $04 ;Time
 
 Level_Header_32:
@@ -443,5 +477,5 @@ Level_Header_32:
 	db $0B ;Level Bank
 	db $01 ;Level Music
 	db $E4, $D0, $38 ;Level Palettes
-	db $05 ;Second Exit?
+	db $05 ;Level number (in it's bank)
 	db $04 ;Time
