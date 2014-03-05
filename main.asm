@@ -10474,8 +10474,12 @@ UnknownRJump_0x14119:
 	ret
 
 UnknownData_0x14121:
-INCBIN "baserom.gb", $14121, $18000 - $14121
+INCBIN "baserom.gb", $14121, $141E5 - $14121
 
+GFX_TitleScreen: ;$141E5
+INCBIN "gfx/titlescreen.2bpp"
+
+INCBIN "baserom.gb", $159E5, $18000 - $159E5
 
 
 SECTION "bank06", ROMX, BANK[$06]

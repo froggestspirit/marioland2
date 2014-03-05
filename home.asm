@@ -5010,11 +5010,11 @@ UnknownCall_0x2AAA:
 	ret
 
 UnknownCall_0x2ABE:
-	ld a, 5 ;prepare bank switch
+	ld a, BANK(GFX_TitleScreen) ;prepare bank switch
 	ld [$A24E], a
 	ld [$2100], a
 	ld bc, $1800
-	ld hl, $41E5
+	ld hl, GFX_TitleScreen
 	ld de, $8000
 	call CopyMem
 	ret
