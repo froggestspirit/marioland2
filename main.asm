@@ -12069,8 +12069,13 @@ SECTION "bank0D", ROMX, BANK[$0D]
 
 UnknownData_0x34000:
 INCBIN "baserom.gb", $34000, $34800 - $34000
+
+GFX_OW_Overworld: ;$34800
 INCBIN "gfx/overworld/overworld.2bpp"
+
 INCBIN "baserom.gb", $35800, $36000 - $35800
+
+GFX_OW_MacroZone: ;$36000
 INCBIN "gfx/overworld/macrozone.2bpp"
 
 TileMapping_Overworld1x1: ;$37000
@@ -12091,18 +12096,41 @@ SECTION "bank0E", ROMX, BANK[$0E]
 
 UnknownData_0x38000:
 INCBIN "baserom.gb", $38000, $38500 - $38000
+
+GFX_OW_PumpkinZone: ;$38500
 INCBIN "gfx/overworld/pumpkinzone.2bpp"
+
 INCBIN "baserom.gb", $38800, $38800 - $38800
+
+GFX_OW_MinigameHill: ;$38800
 INCBIN "gfx/overworld/minigamehill.2bpp"
+
 INCBIN "baserom.gb", $39800, $3A000 - $39800
+
+GFX_OW_TreeZone: ;$3A000
 INCBIN "gfx/overworld/treezone.2bpp"
+
+TileMapping_PumpkinZone:
 INCBIN "tilemaps/overworld/pumpkinzone.bin"
+
+TileMapping_TreeZone:
 INCBIN "tilemaps/overworld/treezone.bin"
+
+TileMapping_SpaceZone:
 INCBIN "tilemaps/overworld/spacezone.bin"
+
+TileMapping_MacroZone:
 INCBIN "tilemaps/overworld/macrozone.bin"
+
+TileMapping_TurtleZone:
 INCBIN "tilemaps/overworld/turtlezone.bin"
+
+TileMapping_MarioZone:
 INCBIN "tilemaps/overworld/mariozone.bin"
+
+TileMapping_WarioCastle:
 INCBIN "tilemaps/overworld/wariocastle.bin"
+
 INCBIN "baserom.gb", $3BFC0, $3C000 - $3BFC0
 
 
@@ -18674,9 +18702,15 @@ SECTION "bank10", ROMX, BANK[$10]
 
 UnknownData_0x40000:
 INCBIN "baserom.gb", $40000, $40800 - $40000
+
+GFX_OW_SpaceZone: ;$40800
 INCBIN "gfx/overworld/spacezone.2bpp"
+
 INCBIN "baserom.gb", $41800, $42000 - $41800
+
+GFX_OW_MarioCastle: ;$42000
 INCBIN "gfx/overworld/mariocastle.2bpp"
+
 INCBIN "tilemaps/overworld/minigamehill.bin"
 INCBIN "tilemaps/minigame/30coin.bin"
 INCBIN "tilemaps/minigame/50coin.bin"
@@ -18691,9 +18725,15 @@ SECTION "bank11", ROMX, BANK[$11]
 
 UnknownData_0x44000:
 INCBIN "baserom.gb", $44000, $44800 - $44000
+
+GFX_OW_MarioZone: ;$44800
 INCBIN "gfx/overworld/mariozone.2bpp"
+
 INCBIN "baserom.gb", $45800, $46000 - $45800
+
+GFX_OW_WarioCastle: ;$46000
 INCBIN "gfx/overworld/wariocastle.2bpp"
+
 INCBIN "baserom.gb", $47000, $47800 - $47000
 INCBIN "tilemaps/minigame/conveyor.bin"
 INCBIN "tilemaps/minigame/rat.bin"
