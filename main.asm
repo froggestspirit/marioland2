@@ -12067,15 +12067,12 @@ INCBIN "baserom.gb", $30A2A, $34000 - $30A2A
 SECTION "bank0D", ROMX, BANK[$0D]
 
 
-UnknownData_0x34000:
-INCBIN "baserom.gb", $34000, $34800 - $34000
-
-GFX_OW_Overworld: ;$34800
+GFX_OW_Overworld: ;$34000
 INCBIN "gfx/overworld/overworld.2bpp"
 
-INCBIN "baserom.gb", $35800, $36000 - $35800
+INCBIN "baserom.gb", $35800, $35A00 - $35800
 
-GFX_OW_MacroZone: ;$36000
+GFX_OW_MacroZone: ;$35A00
 INCBIN "gfx/overworld/macrozone.2bpp"
 
 TileMapping_Overworld1x1: ;$37000
@@ -12095,22 +12092,17 @@ SECTION "bank0E", ROMX, BANK[$0E]
 
 
 UnknownData_0x38000:
-INCBIN "baserom.gb", $38000, $38500 - $38000
+INCBIN "baserom.gb", $38000, $38200 - $38000
 
-GFX_OW_PumpkinZone: ;$38500
+GFX_OW_PumpkinZone: ;$38200
 INCBIN "gfx/overworld/pumpkinzone.2bpp"
 
-INCBIN "baserom.gb", $38800, $38800 - $38800
+INCBIN "baserom.gb", $39800, $39A00 - $39800
 
-GFX_OW_MinigameHill: ;$38800
-INCBIN "gfx/overworld/minigamehill.2bpp"
-
-INCBIN "baserom.gb", $39800, $3A000 - $39800
-
-GFX_OW_TreeZone: ;$3A000
+GFX_OW_TreeZone: ;$39A000
 INCBIN "gfx/overworld/treezone.2bpp"
 
-TileMapping_PumpkinZone:
+TileMapping_PumpkinZone: ;$3B000
 INCBIN "tilemaps/overworld/pumpkinzone.bin"
 
 TileMapping_TreeZone:
@@ -14046,14 +14038,14 @@ UnknownJump_0x3D0D7:
 
 UnknownCall_0x3D0FF:
 	call DisableVBlank
-	ld a, 13 ;prepare bank switch
+	ld a, BANK(GFX_OW_Overworld) ;prepare bank switch
 	ld bc, $0200
-	ld hl, $4000
+	ld hl, GFX_OW_Overworld
 	ld de, $8000
 	call FarCopyMem
-	ld a, 14 ;prepare bank switch
+	ld a, BANK(GFX_OW_TreeZone) ;prepare bank switch
 	ld bc, $1600
-	ld hl, $5A00
+	ld hl, GFX_OW_TreeZone
 	ld de, $8200
 	call FarCopyMem
 	ld a, 14 ;prepare bank switch
@@ -14167,14 +14159,14 @@ UnknownJump_0x3D1E0:
 
 UnknownCall_0x3D208:
 	call DisableVBlank
-	ld a, 13 ;prepare bank switch
+	ld a, BANK(GFX_OW_Overworld) ;prepare bank switch
 	ld bc, $0200
-	ld hl, $4000
+	ld hl, GFX_OW_Overworld
 	ld de, $8000
 	call FarCopyMem
-	ld a, 14 ;prepare bank switch
+	ld a, BANK(GFX_OW_PumpkinZone) ;prepare bank switch
 	ld bc, $1600
-	ld hl, $4200
+	ld hl, GFX_OW_PumpkinZone
 	ld de, $8200
 	call FarCopyMem
 	ld a, 14 ;prepare bank switch
@@ -14336,14 +14328,14 @@ UnknownJump_0x3D33A:
 
 UnknownCall_0x3D371:
 	call DisableVBlank
-	ld a, 13 ;prepare bank switch
+	ld a, BANK(GFX_OW_Overworld) ;prepare bank switch
 	ld bc, $0200
-	ld hl, $4000
+	ld hl, GFX_OW_Overworld
 	ld de, $8000
 	call FarCopyMem
-	ld a, 13 ;prepare bank switch
+	ld a, BANK(GFX_OW_MacroZone) ;prepare bank switch
 	ld bc, $1600
-	ld hl, $5A00
+	ld hl, GFX_OW_MacroZone
 	ld de, $8200
 	call FarCopyMem
 	ld a, 14 ;prepare bank switch
@@ -14466,14 +14458,14 @@ INCBIN "baserom.gb", $3D477, $3D49F - $3D477
 
 UnknownCall_0x3D49F:
 	call DisableVBlank
-	ld a, 13 ;prepare bank switch
+	ld a, BANK(GFX_OW_Overworld) ;prepare bank switch
 	ld bc, $0200
-	ld hl, $4000
+	ld hl, GFX_OW_Overworld
 	ld de, $8000
 	call FarCopyMem
-	ld a, 16 ;prepare bank switch
+	ld a, BANK(GFX_OW_SpaceZone) ;prepare bank switch
 	ld bc, $1600
-	ld hl, $4200
+	ld hl, GFX_OW_SpaceZone
 	ld de, $8200
 	call FarCopyMem
 	ld a, 14 ;prepare bank switch
@@ -14640,14 +14632,14 @@ UnknownRJump_0x3D606:
 
 UnknownCall_0x3D61F:
 	call DisableVBlank
-	ld a, 13 ;prepare bank switch
+	ld a, BANK(GFX_OW_Overworld) ;prepare bank switch
 	ld bc, $0200
-	ld hl, $4000
+	ld hl, GFX_OW_Overworld
 	ld de, $8000
 	call FarCopyMem
-	ld a, 14 ;prepare bank switch
+	ld a, BANK(GFX_OW_TreeZone) ;prepare bank switch
 	ld bc, $1600
-	ld hl, $5A00
+	ld hl, GFX_OW_TreeZone
 	ld de, $8200
 	call FarCopyMem
 	ld a, 14 ;prepare bank switch
@@ -14803,14 +14795,14 @@ UnknownJump_0x3D760:
 
 UnknownCall_0x3D79A:
 	call DisableVBlank
-	ld a, 13 ;prepare bank switch
+	ld a, BANK(GFX_OW_Overworld) ;prepare bank switch
 	ld bc, $0200
-	ld hl, $4000
+	ld hl, GFX_OW_Overworld
 	ld de, $8000
 	call FarCopyMem
-	ld a, 17 ;prepare bank switch
+	ld a, BANK(GFX_OW_MarioZone) ;prepare bank switch
 	ld bc, $1600
-	ld hl, $4200
+	ld hl, GFX_OW_MarioZone
 	ld de, $8200
 	call FarCopyMem
 	ld a, 14 ;prepare bank switch
@@ -14900,14 +14892,14 @@ UnknownJump_0x3D848:
 
 UnknownCall_0x3D880:
 	call DisableVBlank
-	ld a, 13 ;prepare bank switch
+	ld a, BANK(GFX_OW_Overworld) ;prepare bank switch
 	ld bc, $0200
-	ld hl, $4000
+	ld hl, GFX_OW_Overworld
 	ld de, $8000
 	call FarCopyMem
-	ld a, 14 ;prepare bank switch
+	ld a, BANK(GFX_OW_PumpkinZone) ;prepare bank switch
 	ld bc, $1600
-	ld hl, $4200
+	ld hl, GFX_OW_PumpkinZone
 	ld de, $8200
 	call FarCopyMem
 	ld a, 16 ;prepare bank switch
@@ -17876,9 +17868,9 @@ UnknownRJump_0x3EFA4:
 
 UnknownRJump_0x3EFB2:
 	call UnknownCall_0x3EEF0
-	ld a, 13 ;prepare bank switch
+	ld a, BANK(GFX_OW_Overworld) ;prepare bank switch
 	ld bc, $0200
-	ld hl, $4000
+	ld hl, GFX_OW_Overworld
 	ld de, $8000
 	di
 	call FarCopyMem
@@ -18141,9 +18133,9 @@ UnknownCall_0x3F156:
 	call UnknownCall_0x3C901
 
 UnknownRJump_0x3F1C2:
-	ld a, 13 ;prepare bank switch
+	ld a, BANK(GFX_OW_Overworld) ;prepare bank switch
 	ld bc, $1800
-	ld hl, $4000
+	ld hl, GFX_OW_Overworld
 	ld de, $8000
 	di
 	call FarCopyMem
@@ -18701,9 +18693,9 @@ SECTION "bank10", ROMX, BANK[$10]
 
 
 UnknownData_0x40000:
-INCBIN "baserom.gb", $40000, $40800 - $40000
+INCBIN "baserom.gb", $40000, $40200 - $40000
 
-GFX_OW_SpaceZone: ;$40800
+GFX_OW_SpaceZone: ;$40200
 INCBIN "gfx/overworld/spacezone.2bpp"
 
 INCBIN "baserom.gb", $41800, $42000 - $41800
@@ -18724,9 +18716,9 @@ SECTION "bank11", ROMX, BANK[$11]
 
 
 UnknownData_0x44000:
-INCBIN "baserom.gb", $44000, $44800 - $44000
+INCBIN "baserom.gb", $44000, $44200 - $44000
 
-GFX_OW_MarioZone: ;$44800
+GFX_OW_MarioZone: ;$44200
 INCBIN "gfx/overworld/mariozone.2bpp"
 
 INCBIN "baserom.gb", $45800, $46000 - $45800
