@@ -6,8 +6,9 @@ SECTION "bank01", ROMX, BANK[$01]
 
 
 UnknownData_0x4000:
-INCBIN "baserom.gb", $4000, $5267 - $4000
+INCBIN "baserom.gb", $4000, $41E4 - $4000 ;These are pointers to the sprite mappings
 
+INCLUDE "gfx/spritemappings.asm"
 
 UnknownCall_0x5267:
 	ld a, [$FF00+$C6]
