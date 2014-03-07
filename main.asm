@@ -7253,8 +7253,15 @@ UnknownCall_0xC090:
 	ret
 
 UnknownData_0xC0B1:
-INCBIN "baserom.gb", $C0B1, $EBB6 - $C0B1
+INCBIN "baserom.gb", $C0B1, $C201 - $C0B1
 
+INCLUDE "gfx/spritemappings2.asm"
+
+INCBIN "baserom.gb", $CF11, $D0D9 - $CF11
+
+INCLUDE "gfx/spritemappings3.asm"
+
+INCBIN "baserom.gb", $E037, $EBB6 - $E037
 
 UnknownRJump_0xEBB6:
 	ld a, 255
